@@ -1,4 +1,4 @@
-baseurl = "https://example.org/"
+baseurl = "https://blog.jasperginn.nl/"
 languageCode = "en-us"
 title = "Natrium Theme"
 theme = "hugo-natrium-theme"
@@ -15,11 +15,6 @@ pygmentsStyle = "native"
 [permalinks]
     post = "/:slug/"
     page = "/:slug/"
-
-[[menu.main]]
-    name = "About"
-    url = "/about/"
-    weight = -110
     
 [[menu.main]]
     name = "Tags"
@@ -30,12 +25,3 @@ pygmentsStyle = "native"
     name = "Categories"
     url = "/categories"
     weight = -130
-
-[params]
-    description = ""
-
-    [params.logo]
-    url = "logo.png"
-    width = 50
-    height = 50
-    alt = "Logo"

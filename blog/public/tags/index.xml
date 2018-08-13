@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Natrium Theme</title>
+    <link>/tags/</link>
+    <description>Recent content in Tags on Natrium Theme</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 09 Feb 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Actor</title>
+      <link>/tags/actor/</link>
+      <pubDate>Fri, 09 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/actor/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Beach</title>
+      <link>/tags/beach/</link>
+      <pubDate>Fri, 09 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/beach/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Bookcase</title>
+      <link>/tags/bookcase/</link>
+      <pubDate>Fri, 09 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/bookcase/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Fahrenheit</title>
+      <link>/tags/fahrenheit/</link>
+      <pubDate>Fri, 09 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/fahrenheit/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Interest</title>
+      <link>/tags/interest/</link>
+      <pubDate>Fri, 09 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/interest/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Lamb</title>
+      <link>/tags/lamb/</link>
+      <pubDate>Fri, 09 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/lamb/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Nothing</title>
+      <link>/tags/nothing/</link>
+      <pubDate>Fri, 09 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/nothing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Plot</title>
+      <link>/tags/plot/</link>
+      <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
+      
+      <guid>/tags/plot/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>R Markdown</title>
+      <link>/tags/r-markdown/</link>
+      <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
+      
+      <guid>/tags/r-markdown/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Regression</title>
+      <link>/tags/regression/</link>
+      <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
+      
+      <guid>/tags/regression/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

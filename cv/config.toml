@@ -174,16 +174,16 @@ disable404 = true
         title = "Experiences"
 
         [[params.jobs.list]]
-        position = "Lead Developer"
-        dates = "2015 - Present"
-        company = "Startup Hubs, San Francisco"
-        details = "**Describe your role here** lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo.\n\n Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."
-
+        position = "Research intern"
+        dates = "June - August 2018"
+        company = "Cortical.io, Vienna"
+        details = "Investigated the application of Cortical.io's core technologies to finance & investing. Focused on: <br><br> &bull; Gaining an in-depth understanding of Cortical.io's core technology and its application to very large, textual datasets. <br> &bull; Develop methods to process, store and query news articles using Cortical.io's semantic folding technology <br> &bull; Use these methods to develop a prototype for visualizing and downloading historical and live data representing the nature and quantity of news relevant to user-selected stocks, commodities and portfolios. <br> &bull; Serving as liaision between the research team led by Prof. David Stolin and Cortical."
+        
         [[params.jobs.list]]
-        position = "Senior Software Engineer"
-        dates = "2014 - 2015"
-        company = "Google, London"
-        details = "**Describe your role here** lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem."
+        position = "Data Analyst"
+        dates = "2015 - 2017"
+        company = "Leiden University Centre for Innovation, The Hague"
+        details = "Data analyst at the Leiden Center for Innovation, Online Learning Lab (OLL). The OLL facilitates the development of Massive Open Online Courses (MOOCs) at Leiden University. I was responsible for retrieving, storing and analysing MOOC data with the aim of improving courses and providing feedback to content creators & academics. Co-published several academic articles with researchers."
 
         [[params.jobs.list]]
         position = "UI Developer"
@@ -199,29 +199,19 @@ disable404 = true
         intro = "**You can list your side projects or open source libraries in this section.** Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et ligula in nunc bibendum fringilla a eu lectus"
 
         [[params.projects.list]]
-        title = "Hugrid"
-        url = "https://github.com/aerohub/hugrid"
-        tagline = "Grid theme for Hugo. It's a kind of boilerplate to perform anyone or anything quickly. Portfolio, collection, bookmarks, contacts and so on"
+        title = "qualtRics"
+        url = "https://github.com/ropensci/qualtRics"
+        tagline = "Library that provides a bridge between the [qualtrics](https://www.qualtrics.com/) API and R"
 
         [[params.projects.list]]
-        title = "Simple FAQ Theme for Hugo"
-        url = "https://github.com/aerohub/hugo-faq-theme"
-        tagline = "Simple FAQ Theme for Hugo. You may use this theme for building very simple FAQs or note lists."
-
+        title = "sfutils"
+        url = "https://jasperhg90.github.io/sfutils/"
+        tagline = "R package to work with [semantic fingerprints](http://www.cortical.io/science-semantic-folding.html) developed by Cortical.io"
+        
         [[params.projects.list]]
-        title = "Hugo Identity"
-        url = "https://github.com/aerohub/hugo-identity-theme"
-        tagline = "Little profile/card-style template for Hugo."
-
-        [[params.projects.list]]
-        title = "Orbit"
-        url = "https://github.com/aerohub/hugo-orbit-theme"
-        tagline = "Hugo Resume/CV Theme for Developers."
-
-        [[params.projects.list]]
-        title = "Me"
-        url = "https://github.com/aerohub/hugo-me-theme"
-        tagline = "A simple responsive Hugo theme for personal site."
+        title = "FinTxtClient"
+        url = "https://github.com/FinTxt/FinTxtClient-Py"
+        tagline = "Python and [R](https://github.com/FinTxt/FinTxtClient-R) modules that allows the user to interact with the [FinTxt.io API](https://api.fintxt.io/rest/__swagger__/)"
         
     # Publications section
     [params.publications]
@@ -230,11 +220,28 @@ disable404 = true
         title = "publications"
         
         [[params.publications.list]]
-        publisher = "Proceedings of the blablabla"
-        authors = "Jasper Ginn"
-        title = "My awesome article"
+        publisher = "Proceedings of the 8th International Conference on Learning Analytics and Knowledge. ACM, 2018."
+        authors = "van der Zee, Tim, et al."
+        title = "Evaluating retrieval practice in a MOOC: how writing and reading summaries of videos affects student learning"
         year = "2018"
         
+        [[params.publications.list]]
+        authors = "Ginn, J.H."
+        year = 2018
+        title = "qualtRics: retrieve survey data using the Qualtrics API"
+        publisher = "Journal of Open Source Software, 3(24), 690, https://doi.org/10.21105/joss.00690"
+        
+        [[params.publications.list]]
+        publisher = "In Proceedings of the Fourth (2017) ACM Conference on Learning@ Scale. ACM, 2017."
+        title = "Learning about Learning at Scale: Methodological Challenges and Recommendations"
+        authors = "Van der Sluis, Frans, Tim Van der Zee, and Jasper Ginn"
+        year = "2017"
+        
+        [[params.publications.list]]
+        publisher = "In Proceedings of the Third (2016) ACM Conference on Learning@ Scale (pp. 51-60). ACM."
+        title = "Explaining Student Behavior at Scale: The influence of video complexity on student dwelling time"
+        authors = "Van der Sluis, F., Ginn, J., & Van der Zee, T."
+        year = "2016"
 
     # Skills section
     [params.skills]
