@@ -1,0 +1,12 @@
+            <section class="section projects-section">
+                <h2 class="section-title"><i class="fa {{ .Site.Params.publications.icon }}"></i>publications</h2>
+				{{ range .Site.Params.publications.list }}
+                <div class="item">
+                  <span> 
+                    <p>
+                      {{.authors}} ({{.year}}) <b>{{.title}}.</b> {{.publisher}}
+                    </p>
+                  </span>
+                </div><!--//item-->
+				{{ end }}
+            </section><!--//section-->

@@ -92,31 +92,37 @@ disable404 = true
         degree = "UT.5.05x: LAFF: Linear Algebra - Foundations to Frontiers"
         college = "edX (University of Texas)"
         dates = "May 2018"
+        certificate = "https://courses.edx.org/certificates/d86f74f75f1c41e486313d41a80768a0"
         
         [[params.development.list]]
         degree = "DAT201x: Querying with Transact-SQL"
         college = "edX (Microsoft)"
         dates = "Apr. 2017"
+        certificate = "https://courses.edx.org/certificates/9634e8b4db1a4c98a896f23fd52e1872"
 
         [[params.development.list]]
         degree = "Machine Learning"
         college = "Coursera (Stanford University)"
         dates = "Nov. 2016"
+        certificate = "https://www.coursera.org/account/accomplishments/verify/HGE62SSYGFCK"
         
         [[params.development.list]]
         degree = "Machine Learning With Big Data"
         college = "Coursera (UC San Diego)"
         dates = "Jun. 2016"
+        certificate = "https://www.coursera.org/account/accomplishments/verify/PAQBLPZTU3YN"
         
         [[params.development.list]]
         degree = "Introduction to Big Data Analytics"
         college = "Coursera (UC San Diego)"
         dates = "Apr. 2016"
+        certificate = "https://www.coursera.org/account/accomplishments/verify/WJQF2E5AUYYU"
         
         [[params.development.list]]
         degree = "Hadoop Platform and Application Framework"
         college = "Coursera (UC San Diego)"
         dates = "Nov. 2015"
+        certificate = "https://www.coursera.org/account/accomplishments/verify/3NWYMEW55HEL"
 
     # Languages section
     [params.language]
@@ -159,7 +165,7 @@ disable404 = true
         enable = true
         icon = "fa-user"
         title = "Career Profile"
-        summary = "**Summarise your career here** lorem ipsum dolor sit amet, consectetuer adipiscing elit. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu."
+        summary = "A data scientist with a versatile background and a strong interest in social and behavioural sciences, finance, artificial intelligence and social good. Experience with project management, data dashboards, consultancy, machine learning and academic writing."
 
     # Experiences section
     [params.experiences]
@@ -216,6 +222,19 @@ disable404 = true
         title = "Me"
         url = "https://github.com/aerohub/hugo-me-theme"
         tagline = "A simple responsive Hugo theme for personal site."
+        
+    # Publications section
+    [params.publications]
+        enable = true
+        icon = "fa-book"
+        title = "publications"
+        
+        [[params.publications.list]]
+        publisher = "Proceedings of the blablabla"
+        authors = "Jasper Ginn"
+        title = "My awesome article"
+        year = "2018"
+        
 
     # Skills section
     [params.skills]
@@ -224,29 +243,45 @@ disable404 = true
         title = "Skills & Proficiency"
 
         [[params.skills.list]]
-        skill = "Python & Django"
-        level = "98%"
+        skill = "R"
+        level = "90%"
                 
         [[params.skills.list]]
-        skill = "Javascript & jQuery"
-        level = "98%"
-
-        [[params.skills.list]]
-        skill = "Angular"
-        level = "95%"
-
-        [[params.skills.list]]
-        skill = "HTML5 & CSS"
-        level = "95%"
-
-        [[params.skills.list]]
-        skill = "Ruby on Rails"
+        skill = "Python"
         level = "75%"
 
         [[params.skills.list]]
-        skill = "Sketch & Photoshop"
-        level = "60%"
+        skill = "SQL"
+        level = "50%"
 
+        [[params.skills.list]]
+        skill = "NoSQL"
+        level = "40%"
+
+        [[params.skills.other]]
+        skill = "Shiny"
+        
+        [[params.skills.other]]
+        skill = "Markdown"
+        
+        [[params.skills.other]]
+        skill = "Plumber"
+        
+        [[params.skills.other]]
+        skill = "Docker"
+        
+        [[params.skills.other]]
+        skill = "Pandas"
+        
+        [[params.skills.other]]
+        skill = "Tensorflow"
+      
+        [[params.skills.other]]
+        skill = "Linux"
+        
+        [[params.skills.other]]
+        skill = "Git"
+        
     # Footer section
 
     # The original template is released under the Creative Commons Attribution 3.0 License.
@@ -257,4 +292,4 @@ disable404 = true
     # As for Hugo port you may rewrite the "Ported for..." line with setting your name below.
 
     [params.footer]
-        copyright = ""
+        copyright = "Jasper Ginn"

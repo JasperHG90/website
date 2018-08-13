@@ -10,5 +10,22 @@
                         </div><!--//level-bar-->
                     </div><!--//item-->
                 {{ end }}
+                <br>
+                <div class="skillset">
+                  <h3 class="level-title">OTHER:</h3>
+                  <h5 class="meta">
+                    
+                    {{$list := .Site.Params.skills.other}}
+                    {{$len := (len $list)}}
+                    
+                    {{ range $index, $element := $list }}
+                      {{ if eq (add $index 1) $len }}
+                       {{.skill}}
+                      {{ else }}
+                       {{ .skill }},
+                      {{end}}
+                    {{ end }}
+                  </h5>
+                </div>
                 </div>
             </section><!--//skills-section-->

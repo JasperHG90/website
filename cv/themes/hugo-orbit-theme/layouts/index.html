@@ -22,6 +22,10 @@
     {{ if .Site.Params.projects.enable }}
     {{ partial "projects.html" . }}
     {{ end }}
+    
+    {{ if .Site.Params.publications.enable }}
+    {{ partial "publications.html" . }}
+    {{ end }}
 
     {{ if .Site.Params.skills.enable }}
 	{{ partial "skills.html" . }}

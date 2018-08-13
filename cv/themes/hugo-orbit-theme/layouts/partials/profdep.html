@@ -2,7 +2,7 @@
                 <h2 class="container-block-title">Professional development</h2>
 				{{ range .Site.Params.development.list }}
                 <div class="item">
-                    <h4 class="degree">{{ .degree }}</h4>
+                    <h4 class="degree"><a href={{.certificate}} target="_blank">{{ .degree }}</a></h4>
                     <h5 class="meta">{{ .college }}</h5>
                     <div class="time">{{ .dates }}</div>
                 </div><!--//item-->
