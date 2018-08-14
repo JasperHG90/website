@@ -9,10 +9,10 @@ theme = "aerial"
   copyright = "Jasper Ginn"
   favicon = "favicon.ico"
 
-[[params.social]]
-  medium = "blog"
-  icon = "wordpress"
-  link = "https://www.jasperginn.nl/blog"
+#[[params.social]]
+#  medium = "blog"
+#  icon = "wordpress"
+#  link = "https://www.jasperginn.nl/blog"
   
 [[params.social]]
   medium = "cv"
