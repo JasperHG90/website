@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Nigerian elections on Natrium Theme</title>
+    <link>/tags/nigerian-elections/</link>
+    <description>Recent content in Nigerian elections on Natrium Theme</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 25 Sep 2015 12:45:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/nigerian-elections/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>What can crowdsourced data tell us about the conduct of elections?</title>
+      <link>/what-can-crowdsourced-data-tell-us-about-the-conduct-of-elections/</link>
+      <pubDate>Fri, 25 Sep 2015 12:45:00 +0000</pubDate>
+      
+      <guid>/what-can-crowdsourced-data-tell-us-about-the-conduct-of-elections/</guid>
+      <description>This article was written by Johanna Renz around about the time of the 2015 Nigerian Elections. The scripts used to download the data from reclaimnaija can be found on GitHub.
+So far, not many social scientists have paid attention to crowd sourced data, which is essentially all data that is collected through the contributions of a crowd. In contrast to many ‘conventional’ data sources, crowd sourced data can offer information almost instantly and on a high level of detail.</description>
+    </item>
+    
+  </channel>
+</rss>

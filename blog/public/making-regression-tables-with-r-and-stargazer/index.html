@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.46" />
+
+
+<title>Making regression tables with R and Stargazer - Natrium Theme</title>
+<meta property="og:title" content="Making regression tables with R and Stargazer - Natrium Theme">
+
+
+
+  
+  <meta property="description" content="One large advantage of using R over other statistical software programs, is that its open-source community gets to develop packages to add to R&#39;s basic functionalities.">
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" media="all">
+<link rel="stylesheet" href="/css/fonts.css">
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <ul class="nav-links">
+    <a href="/">
+    Home
+    </a>
+    
+    <li><a href="/categories">Categories</a></li>
+    
+    <li><a href="/tags">Tags</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+  <article class="article">
+    <h1 class="article-title">Making regression tables with R and Stargazer</h1>
+    
+    <span class="article-date">2014-07-14</span>
+    
+
+    <div class="article-content">
+      
+
+<p><em>You can find the CPI2006 dataset and R-script used in this post <a href="https://github.com/JasperHG90/stargazer_tutorial" target="_blank">here</a></em></p>
+
+<p>One large advantage of using <a href="http://www.r-project.org/" target="_blank">R</a> over other statistical software programs, is that its open-source community gets to develop packages to add to R&rsquo;s basic functionalities. One package which is particularly helpful is the <a href="http://cran.r-project.org/web/packages/stargazer/stargazer.pdf" target="_blank">“stargazer” package</a>, which produces beautiful (regression) tables in HTML and LaTeX format.</p>
+
+<p>Suppose we take the <a href="http://archive.transparency.org/policy_research/surveys_indices/cpi/2006" target="_blank">2006 Corruption Perception Index</a> (CPI) data which we downloaded in <a href="http://jasperginn.nl/data-scraping-with-python-and-beautifulsoup/" target="_blank">this</a> post and create some tables with stargazer. I&rsquo;ll be using <a href="http://www.r-project.org/" target="_blank">R base package</a> and <a href="http://www.rstudio.com/" target="_blank">Rstudio</a>, both of which are free to download.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#999;font-style:italic"># Clean workspace</span>
+<span style="color:#999;font-style:italic">#rm(list=ls())</span>
+<span style="color:#999;font-style:italic"># Set working directory</span>
+<span style="color:#6ab825">setwd</span>(<span style="color:#ed9d13">&#34;E:\\Documents\\Private\\Wordpres\\Blog3_Stargazer\\&#34;</span>)
+<span style="color:#999;font-style:italic"># Install packages (if needed)</span>
+<span style="color:#6ab825;font-weight:bold">require</span>(stargazer)
+<span style="color:#999;font-style:italic"># load CPI data</span>
+CPI&lt;-read.csv(<span style="color:#ed9d13">&#34;CPI2006.txt&#34;</span>,sep=<span style="color:#ed9d13">&#34;;&#34;</span>,header=<span style="color:#6ab825;font-weight:bold">TRUE</span>)</code></pre></div>
+<p>Say we want to investigate the relationship between the CPI score and the range between the lower and upper error rate. The rationale being that countries with a higher CPI score (i.e. less corruption) deliver more accurate survey results than countries with lower CPI scores. Naturally, this relationship may not hold for any of a number of reasons. For example, when a country suffers from corruption but corruption isn&rsquo;t widespread, then it may be more difficult to observe, thus increasing the error rate. We&rsquo;ll first create a LaTeX table containing the summary statistics.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#999;font-style:italic"># Plot summary statistics</span>
+stargazer(CPI,summary.logical=<span style="color:#6ab825;font-weight:bold">TRUE</span>,type=<span style="color:#ed9d13">&#34;html&#34;</span>,median=<span style="color:#6ab825;font-weight:bold">TRUE</span>,no.space=<span style="color:#6ab825;font-weight:bold">FALSE</span>,
+	single.row=<span style="color:#6ab825;font-weight:bold">FALSE</span>,digits=<span style="color:#3677a9">1</span>,title=<span style="color:#ed9d13">&#34;Summary Statistics&#34;</span>)</code></pre></div>
+<table style="text-align: center;"><caption><strong>Summary Statistics</strong></caption>
+<tbody>
+<tr>
+<td style="border-bottom: 1px solid black;" colspan="7"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Statistic</td>
+<td>N</td>
+<td>Mean</td>
+<td>St. Dev.</td>
+<td>Min</td>
+<td>Median</td>
+<td>Max</td>
+</tr>
+<tr>
+<td style="border-bottom: 1px solid black;" colspan="7"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Rank</td>
+<td>163</td>
+<td>80.1</td>
+<td>46.2</td>
+<td>1</td>
+<td>79</td>
+<td>163</td>
+</tr>
+<tr>
+<td style="text-align: left;">CPI_score</td>
+<td>163</td>
+<td>4.1</td>
+<td>2.2</td>
+<td>1.8</td>
+<td>3.2</td>
+<td>9.6</td>
+</tr>
+<tr>
+<td style="text-align: left;">Number_surveys</td>
+<td>163</td>
+<td>5.8</td>
+<td>1.8</td>
+<td>3</td>
+<td>6</td>
+<td>10</td>
+</tr>
+<tr>
+<td style="text-align: left;">Conf_Range_low</td>
+<td>163</td>
+<td>3.7</td>
+<td>2.1</td>
+<td>1.6</td>
+<td>2.7</td>
+<td>9.5</td>
+</tr>
+<tr>
+<td style="text-align: left;">Conf_Range_high</td>
+<td>163</td>
+<td>4.5</td>
+<td>2.2</td>
+<td>1.8</td>
+<td>3.6</td>
+<td>9.7</td>
+</tr>
+<tr>
+<td style="text-align: left;">Conf_Range_Difference</td>
+<td>163</td>
+<td>0.8</td>
+<td>0.5</td>
+<td>0.1</td>
+<td>0.7</td>
+<td>3.2</td>
+</tr>
+<tr>
+<td style="border-bottom: 1px solid black;" colspan="7"></td>
+</tr>
+</tbody>
+</table>
+
+<p>The table above is printed in HTML format. If you were using <a href="http://www.stat.uni-muenchen.de/~leisch/Sweave/" target="_blank">Sweave</a> or <a href="http://yihui.name/knitr/" target="_blank">Knitr</a>, you would change the &lsquo;type&rsquo;-option to &lsquo;latex&rsquo; and then turn it into a PDF file, as you can observe <a href="https://dl.dropboxusercontent.com/u/38011066/wp/Blog3_Stargazer.pdf" target="_blank">by viewing this post in PDF format</a>. You can also print the above table in plain text:</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#999;font-style:italic"># Plot summary statistics</span>
+stargazer(CPI,summary.logical=<span style="color:#6ab825;font-weight:bold">TRUE</span>,type=<span style="color:#ed9d13">&#34;text&#34;</span>,median=<span style="color:#6ab825;font-weight:bold">TRUE</span>,no.space=<span style="color:#6ab825;font-weight:bold">FALSE</span>,
+	single.row=<span style="color:#6ab825;font-weight:bold">FALSE</span>,digits=<span style="color:#3677a9">1</span>,title=<span style="color:#ed9d13">&#34;Summary Statistics&#34;</span>)</code></pre></div>
+<pre><code>##
+## Summary Statistics
+## ======================================================
+## Statistic              N  Mean St. Dev. Min Median Max
+## ------------------------------------------------------
+## Rank                  163 80.1   46.2    1    79   163
+## CPI_score             163 4.1    2.2    1.8  3.2   9.6
+## Number_surveys        163 5.8    1.8     3    6    10
+## Conf_Range_low        163 3.7    2.1    1.6  2.7   9.5
+## Conf_Range_high       163 4.5    2.2    1.8  3.6   9.7
+## Conf_Range_Difference 163 0.8    0.5    0.1  0.7   3.2
+## ------------------------------------------------------
+</code></pre>
+
+<p>In order to examine the relationship between the CPI variable and the error margin, let&rsquo;s create a scatterplot using the ggplot2 package:</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#999;font-style:italic"># Load the ggplot2 package</span>
+<span style="color:#6ab825;font-weight:bold">require</span>(ggplot2)
+<span style="color:#999;font-style:italic"># Plot a scratterplot between variables</span>
+qplot(CPI_score,Conf_Range_Difference,data=CPI)</code></pre></div>
+<div>
+    <img src="img/blog/regression_tables_r_stargazer/scatter_1.png">
+</div>
+
+<p>It looks like the data shows a curve where the confidence range is lowest at high and low scores, but becomes larger in the mid-level scores. Thus, the CPI scores of mid-range countries have larger error rates. This seems in line with the above theory that corruption is most difficult to observe when it&rsquo;s present, but not widespread. In order to deal with this non-linear relationship, we simply plot a polynomial regression smoother:</p>
+
+<p>{% highlight R %}</p>
+
+<h1 id="plot-a-scratterplot-between-variables">Plot a scratterplot between variables</h1>
+
+<p>qq&lt;-qplot(CPI_score,Conf_Range_Difference,data=CPI)
+plot(qq + geom_smooth(method=&ldquo;lm&rdquo;,formula=y~x + I(x^2)))
+{% endhighlight %}</p>
+
+<div>
+    <img src="img/blog/regression_tables_r_stargazer/scatter_2.png">
+</div>
+
+<p>All right, we now model the relationship using simple linear regression. Because the relationship appears to be non-linear, we&rsquo;ll include the polynomial relationship in the second model. The extra settings we&rsquo;re defining allow us to to further customize the output. Find a full overview of the features <a href="http://cran.r-project.org/web/packages/stargazer/stargazer.pdf" target="_blank">here</a>.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#999;font-style:italic"># Model</span>
+CPI$CPI_score=<span style="color:#6ab825">as.numeric</span>(CPI$CPI_score)
+model1&lt;-lm(Conf_Range_Difference~CPI_score,data=CPI)
+model2&lt;-lm(Conf_Range_Difference~CPI_score + <span style="color:#6ab825">I</span>(CPI_score^<span style="color:#3677a9">2</span>),data=CPI)
+<span style="color:#999;font-style:italic"># Stargazer table</span>
+stargazer(model1,model2, type=<span style="color:#ed9d13">&#34;html&#34;</span>, column.labels=<span style="color:#6ab825;font-weight:bold">c</span>(<span style="color:#ed9d13">&#34;Linear Model&#34;</span>,<span style="color:#ed9d13">&#34;Polynomial Model&#34;</span>),
+	title=<span style="color:#ed9d13">&#34;Example regression table&#34;</span>,covariate.labels=<span style="color:#6ab825;font-weight:bold">c</span>(<span style="color:#ed9d13">&#34;CPI score&#34;</span>,<span style="color:#ed9d13">&#34;CPI score-squared&#34;</span>),
+	no.space=<span style="color:#6ab825;font-weight:bold">TRUE</span>,single.row=<span style="color:#6ab825;font-weight:bold">TRUE</span>,style=<span style="color:#ed9d13">&#34;default&#34;</span>,model.numbers=<span style="color:#6ab825;font-weight:bold">FALSE</span>,multicolumn=<span style="color:#6ab825;font-weight:bold">FALSE</span>,
+	notes=<span style="color:#6ab825;font-weight:bold">c</span>(<span style="color:#ed9d13">&#34;These are some notes which replace the standard notes.&#34;</span>,
+	<span style="color:#ed9d13">&#34;Standard errors are reported in parentheses underneath the coefficients.&#34;</span>,
+	<span style="color:#ed9d13">&#34;Significance at p = 0.1, p = 0.5 and p = 0.01 are denoted by &#39;*&#39;, &#39;**&#39;
+</span><span style="color:#ed9d13">	and &#39;***&#39; respectively&#34;</span>),notes.append=<span style="color:#6ab825;font-weight:bold">FALSE</span>,notes.align=<span style="color:#ed9d13">&#34;l&#34;</span>)</code></pre></div>
+<table style="text-align: center;"><caption><strong>Example regression table</strong></caption>
+<tbody>
+<tr>
+<td style="border-bottom: 1px solid black;" colspan="3"></td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td colspan="2"><em>Dependent variable:</em></td>
+</tr>
+<tr>
+<td></td>
+<td style="border-bottom: 1px solid black;" colspan="2"></td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td>Conf_Range_Difference</td>
+<td>Conf_Range_Difference</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td>Linear Model</td>
+<td>Polynomial Model</td>
+</tr>
+<tr>
+<td style="border-bottom: 1px solid black;" colspan="3"></td>
+</tr>
+<tr>
+<td style="text-align: left;">CPI score</td>
+<td>0.059<sup>***</sup> (0.018)</td>
+<td>0.887<sup>***</sup> (0.076)</td>
+</tr>
+<tr>
+<td style="text-align: left;">CPI score-squared</td>
+<td></td>
+<td>-0.077<sup>***</sup> (0.007)</td>
+</tr>
+<tr>
+<td style="text-align: left;">Constant</td>
+<td>0.559<sup>***</sup> (0.083)</td>
+<td>-1.177<sup>***</sup> (0.169)</td>
+</tr>
+<tr>
+<td style="border-bottom: 1px solid black;" colspan="3"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Observations</td>
+<td>163</td>
+<td>163</td>
+</tr>
+<tr>
+<td style="text-align: left;">R<sup>2</sup></td>
+<td>0.062</td>
+<td>0.468</td>
+</tr>
+<tr>
+<td style="text-align: left;">Adjusted R<sup>2</sup></td>
+<td>0.056</td>
+<td>0.462</td>
+</tr>
+<tr>
+<td style="text-align: left;">Residual Std. Error</td>
+<td>0.494 (df = 161)</td>
+<td>0.373 (df = 160)</td>
+</tr>
+<tr>
+<td style="text-align: left;">F Statistic</td>
+<td>10.690<sup>***</sup> (df = 1; 161)</td>
+<td>70.510<sup>***</sup> (df = 2; 160)</td>
+</tr>
+<tr>
+<td style="border-bottom: 1px solid black;" colspan="3"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><em>Note:</em></td>
+<td style="text-align: left;" colspan="2">These are some notes which replace the standard notes.</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;" colspan="2">Standard errors are reported in parentheses underneath the coefficients.</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;" colspan="2">Significance at p = 0.1, p = 0.5 and p = 0.01 are denoted by ‘*’, ‘**’ and</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;" colspan="2">‘***’ respectively</td>
+</tr>
+</tbody>
+</table>
+
+<p>That&rsquo;s it! That&rsquo;s how you use stargazer in combination with R.</p>
+
+    </div>
+ 
+    <ul class="article-taxonomy">
+                  
+      <hr>
+      <li>
+        <i class="fa fa-category"></i><a href="/categories/tutorial">Tutorial</a>
+      </li>
+      
+    
+      
+  </article>
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank"><i class="fa fa-rss"></i> RSS feed</a>
+          </li>
+          <li>
+            <a href="https://github.com/mobybit/hugo-natrium-theme"><i class="fa fa-github"></i> Code</a>
+          </li>
+          <li>
+            <a href="/site-notice">Site notice</a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+
+  </body>
+</html>
+

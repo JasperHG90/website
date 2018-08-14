@@ -254,7 +254,7 @@ blockquote {
   display: inline-block;
   box-sizing: border-box;
   width: auto;
-  max-width: 100%;
+  max-width: 80%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

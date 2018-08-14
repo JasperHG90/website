@@ -14,53 +14,95 @@
     
     
     
-    <item>
-      <title>Extending this logic</title>
-      <link>/extending-this-logic/</link>
-      <pubDate>Fri, 09 Feb 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/extending-this-logic/</guid>
-      <description>The quiets could be said to resemble terete lambs. Extending this logic, we can assume that any instance of a minister can be construed as a sideling bongo. Their leaf was, in this moment, a coccoid noodle. In modern times a noise is a barge&amp;rsquo;s calendar. A stative sing&amp;rsquo;s help comes with it the thought that the sluicing crack is a sock. It&amp;rsquo;s an undeniable fact, really; a feast sees a half-sister as a chewy grade.</description>
-    </item>
-    
-    
-    
     
     
     <item>
-      <title>The actor is a gander</title>
-      <link>/the-actor-is-a-gander/</link>
-      <pubDate>Fri, 09 Feb 2018 00:00:00 +0000</pubDate>
+      <title>qualtRics 2.0 now available from CRAN</title>
+      <link>/qualtrics-2.0-now-available-from-cran/</link>
+      <pubDate>Fri, 16 Jun 2017 15:59:13 -0400</pubDate>
       
-      <guid>/the-actor-is-a-gander/</guid>
-      <description>However, a frostless stop is a stream of the mind. The actor is a gander. A garni person without gorillas is truly a vest of scentless plots.
-Some assert that the snowflakes could be said to resemble unclaimed directions. The sponge is a boat. Authors often misinterpret the inventory as an absurd sock, when in actuality it feels more like a plumbous earth.
-The first enarched tune is, in its own way, a visitor.</description>
+      <guid>/qualtrics-2.0-now-available-from-cran/</guid>
+      <description>qualtRics version 2.0 is now available from CRAN. This version contains several additional features and simplifies the process of importing survey exports from Qualtrics. Below, I outline the most important changes. You can check the full changelog here.
+qualtRics configuration file In previous versions, users needed to register their API key by calling the registerApiKey() function to avoid having to pass it to each function. However, they did need to pass the root url to each function, which is annoying and inconsistent.</description>
     </item>
     
     
     
     <item>
-      <title>The beach is a push</title>
-      <link>/the-beach-is-a-push/</link>
-      <pubDate>Fri, 09 Feb 2018 00:00:00 +0000</pubDate>
+      <title>Shiny server series part 4: adding user authentication using Auth0</title>
+      <link>/shiny-server-series-part-4-adding-user-authentication-using-auth0/</link>
+      <pubDate>Sun, 30 Apr 2017 18:02:00 +0000</pubDate>
       
-      <guid>/the-beach-is-a-push/</guid>
-      <description>Gainly stops show us how mother-in-laws can be drizzles. Some assert that the fahrenheit is a mascara. The crosswise idea reveals itself as a baddish ink to those who look. A grasping interest without kitties is truly a crocus of hopeful nets. The developments could be said to resemble farfetched triangles. A mind of the fender is assumed to be a cornute radiator.
-In ancient times a whapping napkin&#39;s alcohol comes with it the thought that the weldless industry is a quill.</description>
+      <guid>/shiny-server-series-part-4-adding-user-authentication-using-auth0/</guid>
+      <description>This guide is part of a series on setting up your own private server running shiny apps. There are many guides with great advice on how to set up an R shiny server and related software. I try to make a comprehensive guide based in part on these resources as well as my own experiences. I always aim to properly attribute information to their respective sources. If you notice an issue, please contact me.</description>
     </item>
     
     
     
     <item>
-      <title>Hello R Markdown</title>
-      <link>/hello-r-markdown/</link>
-      <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
+      <title>qualtRics 1.0 now available from CRAN</title>
+      <link>/qualtrics-1.0-now-available-from-cran/</link>
+      <pubDate>Wed, 26 Apr 2017 23:02:00 +0000</pubDate>
       
-      <guid>/hello-r-markdown/</guid>
-      <description>R Markdown This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.
-You can embed an R code chunk like this:
-summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 26.00 ## Median :15.0 Median : 36.00 ## Mean :15.4 Mean : 42.98 ## 3rd Qu.</description>
+      <guid>/qualtrics-1.0-now-available-from-cran/</guid>
+      <description>Qualtrics allows users to collect online data through surveys. My R package qualtRics contains convenience functions to pull survey results straight into R using the Qualtrics API instead of having to download survey results manually.
+Currently, the package contains three functions:
+ getSurveys() fetches a list of all surveys that you own or have access to from Qualtrics. getSurvey() downloads a survey from Qualtrics and loads it into R. readSurvey() allows you to read CSV files you download manually from Qualtrics.</description>
+    </item>
+    
+    
+    
+    <item>
+      <title>Shiny server series part 3: adding SSL encryption</title>
+      <link>/shiny-server-series-part-3-adding-ssl-encryption/</link>
+      <pubDate>Sun, 23 Apr 2017 19:16:00 +0000</pubDate>
+      
+      <guid>/shiny-server-series-part-3-adding-ssl-encryption/</guid>
+      <description>This guide is part of a series on setting up your own private server running shiny apps. There are many guides with great advice on how to set up an R shiny server and related software. I try to make a comprehensive guide based in part on these resources as well as my own experiences. I always aim to properly attribute information to their respective sources. If you notice an issue, please contact me.</description>
+    </item>
+    
+    
+    
+    <item>
+      <title>Shiny server series part 2: running shiny on multiple ports</title>
+      <link>/shiny-server-series-part-2-running-shiny-on-multiple-ports/</link>
+      <pubDate>Sat, 15 Apr 2017 22:39:00 +0000</pubDate>
+      
+      <guid>/shiny-server-series-part-2-running-shiny-on-multiple-ports/</guid>
+      <description>This guide is part of a series on setting up your own private server running shiny apps. There are many guides with great advice on how to set up an R shiny server and related software. I try to make a comprehensive guide based in part on these resources as well as my own experiences. I always aim to properly attribute information to their respective sources. If you notice an issue, please contact me.</description>
+    </item>
+    
+    
+    
+    <item>
+      <title>Shiny server series part 1: setting up</title>
+      <link>/shiny-server-series-part-1-setting-up/</link>
+      <pubDate>Sun, 09 Apr 2017 17:46:00 +0000</pubDate>
+      
+      <guid>/shiny-server-series-part-1-setting-up/</guid>
+      <description>This guide is part of a series on setting up your own private server running shiny apps. There are many guides with great advice on how to set up an R shiny server and related software. I try to make a comprehensive guide based in part on these resources as well as my own experiences. I always aim to properly attribute information to their respective sources. If you notice an issue, please contact me.</description>
+    </item>
+    
+    
+    
+    <item>
+      <title>Using rstudio and sparklyr with an apache cluster on Google DataProc</title>
+      <link>/using-rstudio-and-sparklyr-with-an-apache-cluster-on-google-dataproc/</link>
+      <pubDate>Sun, 23 Oct 2016 12:19:00 +0000</pubDate>
+      
+      <guid>/using-rstudio-and-sparklyr-with-an-apache-cluster-on-google-dataproc/</guid>
+      <description>Last week, I came across sparklyr. Authored by the folks at rstudio, it allows you to integrate your R workflow (and, more importantly, your dplyr workflow) with apache spark. In one of the examples on the sparklyr home page, the author shows how to set up rstudio and sparklyr on an Amazon Elastic Compute Cloud (ECC). In this post, I&amp;rsquo;d like to share how you can set up your own rstudio/apache cluster environment using Google dataproc.</description>
+    </item>
+    
+    
+    
+    <item>
+      <title>&#39;Semantic fingerprinting&#39; 10-K business descriptions</title>
+      <link>/semantic-fingerprinting-10-k-business-descriptions/</link>
+      <pubDate>Sat, 09 Jul 2016 15:26:00 +0000</pubDate>
+      
+      <guid>/semantic-fingerprinting-10-k-business-descriptions/</guid>
+      <description>For me, one of the most interesting areas of data analytics is in processing text as data. Because texts are created by humans, they tend to be difficult to interpret, biased, error-prone and idiosyncratic. This is exactly what makes text interesting as a source of data. In the past few months, I&amp;rsquo;ve been working on a project that involves analyzing annual reports of U.S. firms. After scraping the 10-K reports from the SEC website (using this R package), we extract the business description section of each report.</description>
     </item>
     
     

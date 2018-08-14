@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.46" />
+
+
+<title>Shiny server series part 3: adding SSL encryption - Natrium Theme</title>
+<meta property="og:title" content="Shiny server series part 3: adding SSL encryption - Natrium Theme">
+
+
+
+  
+  <meta property="description" content="In part 1 and part 2 of this series, we set up an ubuntu 16.04 server to host shiny applications. Thus far, we configured shiny server to listen on port 3838 (for public apps) and 4949 (for private apps). In this part, we will set up SSL encryption on the server for additional security">
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" media="all">
+<link rel="stylesheet" href="/css/fonts.css">
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <ul class="nav-links">
+    <a href="/">
+    Home
+    </a>
+    
+    <li><a href="/categories">Categories</a></li>
+    
+    <li><a href="/tags">Tags</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+  <article class="article">
+    <h1 class="article-title">Shiny server series part 3: adding SSL encryption</h1>
+    
+    <span class="article-date">2017-04-23</span>
+    
+
+    <div class="article-content">
+      
+
+<p><em>This guide is part of a series on setting up your own private server running shiny apps. There are many guides with great advice on how to set up an R shiny server and related software. I try to make a comprehensive guide based in part on these resources as well as my own experiences. I always aim to properly attribute information to their respective sources. If you notice an issue, please contact me.</em></p>
+
+<p>Part 1 of this series is available <a href="https://www.jasperginn.nl/shiny-server-series-pt1/">here</a></p>
+
+<p>Part 2 of this series is available <a href="https://www.jasperginn.nl/shiny-server-series-pt2/">here</a></p>
+
+<p>In part 1 and part 2 of this series, we set up an ubuntu 16.04 server to host shiny applications. Thus far, we configured shiny server to listen on port 3838 (for public apps) and 4949 (for private apps). In this part, we will set up SSL encryption on the server for additional security.</p>
+
+<h2 id="resources-used-for-this-part">Resources used for this part</h2>
+
+<p>This guide is largely based on <a href="https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-14-04">this</a>  tutorial.</p>
+
+<h2 id="adding-ssl-encryption-to-your-server">Adding SSL encryption to your server</h2>
+
+<p>We’re going to use <a href="https://certbot.eff.org">certbot</a>  and <a href="https://letsencrypt.org">Let’s encrypt</a> to set up the SSL certificate.</p>
+
+<p>Log into your server and switch to the Shiny user:</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#999;font-style:italic"># Log into the server
+</span><span style="color:#999;font-style:italic"></span>ssh root@&lt;your-VPS-ip&gt;
+<span style="color:#999;font-style:italic"># Switch to shiny user
+</span><span style="color:#999;font-style:italic"></span>su shiny</code></pre></div>
+<p>Go to the <code>sbin</code> folder on your server and download certbot-auto:</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#24909d">cd</span> /usr/local/sbin
+sudo wget https://dl.eff.org/certbot-auto</code></pre></div>
+<p>Make the script executable:</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo chmod a+x /usr/local/sbin/certbot-auto</code></pre></div>
+<p>Now, open up the nginx configuration:</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo nano /etc/nginx/sites-available/default</code></pre></div>
+<p>Take note of the root location, shown in the image below surrounded by the blue box.  For the remainder of this tutorial, I’ll assume that your root location is located at <code>/var/www/html</code>. If it is not, make sure to switch your root location with mine when executing the commands below.</p>
+
+<p>Then, add the contents below to the nginx configuration (surrounded by the red box in the image)</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">location ~ /.well-known {
+    allow all;
+}</code></pre></div>
+<p><img src="img/blog/shiny_series_pt3/setuppartIII.png" alt="" /></p>
+
+<p>Restart nginx:</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo service nginx restart</code></pre></div>
+<p>Take your root location and your domain name (with www. and without it) and fill them out in the and <your-domain-name> parts in the command below. Don’t forget to change &lt;.extension&gt; to your extension (e.g. .nl, .com, .eu). Then, execute this command:</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">certbot-auto certonly -a webroot --webroot-path=/var/www/html -d &lt;your-domain-name&gt;.&lt;extension&gt; -d www.&lt;your-domain-name&gt;.&lt;extension&gt;</code></pre></div>
+<p>Next, we generate a strong <a href="https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange">Diffie–Hellman</a>  group for extra security:</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo openssl dhparam -out /etc/ssl/certs/dhparam.pem <span style="color:#3677a9">2048</span></code></pre></div>
+<p>SSL certificates expire every couple of months or so, so it’s a good idea to refresh our certificate regularly. We’ll set up a cron job that does this every week.  Access cron by executing the following:</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo crontab -e</code></pre></div>
+<p>Add the following lines:</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">30 2 * * 1 /usr/local/sbin/certbot-auto renew &gt;&gt; /var/log/le-renew.log
+35 2 * * 1 /etc/init.d/nginx reload</code></pre></div>
+<p><img src="img/blog/shiny_series_pt3/crontab.png" alt="" /></p>
+
+<p>Hit <code>control+x</code> and then <code>Y</code> and <code>enter</code>, and your changes will be saved. Congratulations, you have now successfully set up SSL encryption on your server! Note that SSL encryption is not yet operational; we&rsquo;ll take care of that in the next part, when we’ll add user authentication to our private shiny server using <a href="https://auth0.com">Auth0</a></p>
+
+    </div>
+ 
+    <ul class="article-taxonomy">
+                  
+      <hr>
+      <li>
+        <i class="fa fa-category"></i><a href="/categories/tutorial">tutorial</a>
+      </li>
+      
+    
+      
+  </article>
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank"><i class="fa fa-rss"></i> RSS feed</a>
+          </li>
+          <li>
+            <a href="https://github.com/mobybit/hugo-natrium-theme"><i class="fa fa-github"></i> Code</a>
+          </li>
+          <li>
+            <a href="/site-notice">Site notice</a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+
+  </body>
+</html>
+

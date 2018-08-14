@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.46" />
+
+
+<title>qualtRics 2.0 now available from CRAN - Natrium Theme</title>
+<meta property="og:title" content="qualtRics 2.0 now available from CRAN - Natrium Theme">
+
+
+
+  
+  <meta property="description" content="qualtRics version 2.0 is now released">
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" media="all">
+<link rel="stylesheet" href="/css/fonts.css">
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <ul class="nav-links">
+    <a href="/">
+    Home
+    </a>
+    
+    <li><a href="/categories">Categories</a></li>
+    
+    <li><a href="/tags">Tags</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+  <article class="article">
+    <h1 class="article-title">qualtRics 2.0 now available from CRAN</h1>
+    
+    <span class="article-date">2017-06-16</span>
+    
+
+    <div class="article-content">
+      
+
+<p>qualtRics version 2.0 is now available <a href="https://cran.r-project.org/web/packages/qualtRics/index.html">from CRAN</a>. This version contains several additional features and simplifies the process of importing survey exports from Qualtrics. Below, I outline the most important changes. You can check the full changelog <a href="https://github.com/JasperHG90/qualtRics#changelog">here</a>.</p>
+
+<h3 id="qualtrics-configuration-file">qualtRics configuration file</h3>
+
+<p>In previous versions, users needed to register their API key by calling the <code>registerApiKey()</code> function to avoid having to pass it to each function. However, they did need to pass the root url to each function, which is annoying and inconsistent.</p>
+
+<p>In this version, the <code>registerApiKey()</code> function has been replaced by <code>registerOptions()</code>, which stores both the API key and the root url in environment variables. It also stores several other options (e.g. verbose logs to the R console). You can find more information about this <a href="https://github.com/JasperHG90/qualtRics#registering-your-qualtrics-credentials">here</a></p>
+
+<p>This version also supports the use of a configuration file called &lsquo;.qualtRics.yml&rsquo; that the user can store in the working directory of an R project. If a config file is present in the working directory, then it will be loaded when the user loads the qualtRics library, eliminating the need to register credentials at all. You can find more information about this <a href="https://github.com/JasperHG90/qualtRics#using-a-configuration-file">here</a>.</p>
+
+<h3 id="getsurvey-supports-all-available-parameters">getSurvey() supports all available parameters</h3>
+
+<p>The <code>getSurvey()</code> function now supports all parameters that the <a href="https://api.qualtrics.com/docs/create-response-export">Qualtrics API</a> provides. Concretely, I&rsquo;ve added the following parameters since version 1.0:</p>
+
+<ol>
+<li><strong>seenUnansweredRecode:</strong> Recode seen but unanswered questions with a string value.</li>
+<li><strong>limit:</strong> Maximum number of responses exported. Defaults to NULL (all responses).</li>
+<li><strong>useLocalTime:</strong> Use local timezone to determine response date values.</li>
+<li><strong>includedQuestionIds:</strong> Export only specified questions.</li>
+</ol>
+
+<p>You can use a new function called <code>getSurveyQuestions()</code> to retrieve a data frame of question IDs and labels, which you can in turn pass to the <code>getSurvey()</code> function to export only a subset of your questions.</p>
+
+<h3 id="getsurveys-retrieves-100-surveys">getSurveys() retrieves &gt; 100 surveys</h3>
+
+<p>In previous versions of qualtRics, <code>getSurveys()</code> only retrieved 100 results. It now fetches all surveys. If you manage many surveys, this does mean that it could take some time for the function to complete.</p>
+
+<p>If you notice any issues with the package, or if you would like to suggest a feature, please leave a comment <a href="https://github.com/JasperHG90/qualtRics/issues">here</a>.</p>
+
+    </div>
+ 
+    <ul class="article-taxonomy">
+                  
+      <hr>
+      <li>
+        <i class="fa fa-category"></i><a href="/categories/post">post</a>
+      </li>
+      
+    
+      
+      <li>
+        <i class="fa fa-tags"></i><a href="/tags/r">R</a><a href="/tags/qualtrics">Qualtrics</a><a href="/tags/qualtrics">qualtRics</a><a href="/tags/cran">CRAN</a>
+      </li>
+      
+  </article>
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank"><i class="fa fa-rss"></i> RSS feed</a>
+          </li>
+          <li>
+            <a href="https://github.com/mobybit/hugo-natrium-theme"><i class="fa fa-github"></i> Code</a>
+          </li>
+          <li>
+            <a href="/site-notice">Site notice</a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+
+  </body>
+</html>
+

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Naive Bayes on Natrium Theme</title>
+    <link>/tags/naive-bayes/</link>
+    <description>Recent content in Naive Bayes on Natrium Theme</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 23 Nov 2015 12:54:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/naive-bayes/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Classifying Guardian News Articles Using Naive Bayes</title>
+      <link>/classifying-guardian-news-articles-using-naive-bayes/</link>
+      <pubDate>Mon, 23 Nov 2015 12:54:00 +0000</pubDate>
+      
+      <guid>/classifying-guardian-news-articles-using-naive-bayes/</guid>
+      <description>A while back, I adapted the Naive Bayes model used in this excellent video to classify text documents in Python. Classifying text documents is a fairly straightforward task which is fun to do, and so I wanted to test it out by classifying articles from the Guardian belonging to four categories. In the rest of this post, I’m going to outline some theory on probabilities and Bayes’ Law. Then, we’ll pre-process the Guardian news articles and attempt to classify as many of them to the correct section.</description>
+    </item>
+    
+  </channel>
+</rss>

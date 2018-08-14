@@ -6,34 +6,62 @@
     <description>Recent content in Categories on Natrium Theme</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Sun, 18 Jan 2015 14:20:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Metaphorsum</title>
-      <link>/categories/metaphorsum/</link>
-      <pubDate>Fri, 09 Feb 2018 00:00:00 +0000</pubDate>
+      <title>Analysis</title>
+      <link>/categories/analysis/</link>
+      <pubDate>Sun, 18 Jan 2015 14:20:00 +0000</pubDate>
       
-      <guid>/categories/metaphorsum/</guid>
+      <guid>/categories/analysis/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Analysis</title>
+      <link>/categories/analysis/</link>
+      <pubDate>Sat, 09 Jul 2016 15:26:00 +0000</pubDate>
+      
+      <guid>/categories/analysis/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Post</title>
       <link>/categories/post/</link>
-      <pubDate>Fri, 09 Feb 2018 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 16 Jun 2017 15:59:13 -0400</pubDate>
       
       <guid>/categories/post/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>R</title>
-      <link>/categories/r/</link>
-      <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
+      <title>R Package</title>
+      <link>/categories/r-package/</link>
+      <pubDate>Wed, 26 Apr 2017 23:02:00 +0000</pubDate>
       
-      <guid>/categories/r/</guid>
+      <guid>/categories/r-package/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tutorial</title>
+      <link>/categories/tutorial/</link>
+      <pubDate>Mon, 14 Jul 2014 20:33:00 +0000</pubDate>
+      
+      <guid>/categories/tutorial/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tutorial</title>
+      <link>/categories/tutorial/</link>
+      <pubDate>Mon, 14 Jul 2014 20:33:00 +0000</pubDate>
+      
+      <guid>/categories/tutorial/</guid>
       <description></description>
     </item>
     

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.46" />
+
+
+<title>Shiny server series part 1: setting up - Natrium Theme</title>
+<meta property="og:title" content="Shiny server series part 1: setting up - Natrium Theme">
+
+
+
+  
+  <meta property="description" content="Recently, I&#39;ve set up several shiny servers that required some custom tweaks like user authentication, running shiny server on multiple ports and setting up SSL. With the help of numerous resources, I got everything running smoothly. I decided to publish these steps on my blog so that others might also use them.">
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" media="all">
+<link rel="stylesheet" href="/css/fonts.css">
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <ul class="nav-links">
+    <a href="/">
+    Home
+    </a>
+    
+    <li><a href="/categories">Categories</a></li>
+    
+    <li><a href="/tags">Tags</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+  <article class="article">
+    <h1 class="article-title">Shiny server series part 1: setting up</h1>
+    
+    <span class="article-date">2017-04-09</span>
+    
+
+    <div class="article-content">
+      <p><em>This guide is part of a series on setting up your own private server running shiny apps. There are many guides with great advice on how to set up an R shiny server and related software. I try to make a comprehensive guide based in part on these resources as well as my own experiences. I always aim to properly attribute information to their respective sources. If you notice an issue, please contact me.</em></p>
+<p><em><a href="https://www.jasperginn.nl/shiny-server-series-pt2/">Part 2</a> is now available!</em></p>
+<p><em><a href="https://www.jasperginn.nl/shiny-server-series-pt3/">Part 3</a> is now available!</em></p>
+<p>Welcome to the first part of the shiny server series!</p>
+<p>Recently, I’ve set up several shiny servers that required some custom tweaks like user authentication, running shiny server on multiple ports and setting up SSL. With the help of numerous resources, I got everything running smoothly. I decided to publish these steps on my blog so that others might also use them. In this first part, we’ll be setting up the private server and installing shiny.</p>
+<div id="resources-used-for-this-part" class="section level2">
+<h2>Resources used for this part</h2>
+<p>This guide draws from other guides on the web. The resources below were used to put together this resource.</p>
+<ol style="list-style-type: decimal">
+<li><a href="https://www.digitalocean.com/community/tutorials/how-to-install-r-on-ubuntu-16-04-2">This guide</a> shows you how to install R on Ubuntu 16.04</li>
+<li>Dean Attali’s <a href="http://deanattali.com/2015/05/09/setup-rstudio-shiny-server-digital-ocean/">blog post</a> is one of the best and most comprehensive guides on setting up your own shiny server.</li>
+<li><a href="https://www.digitalocean.com/community/tutorials/how-to-set-up-a-host-name-with-digitalocean">This guide</a> is used to couple a domain name to your server.</li>
+</ol>
+</div>
+<div id="what-youll-need" class="section level2">
+<h2>What you’ll need</h2>
+<p>In order to complete this entire series, I expect you have access to the following:</p>
+<ul>
+<li>A Virtual Private Server (VPS, see below)</li>
+<li>A domain name, such as www.iamadomainname.com. These are available on e.g. <a href="www.namecheap.com">namecheap</a>.</li>
+</ul>
+<p>If you have these two things, you may proceed!</p>
+</div>
+<div id="a-vpwhat" class="section level2">
+<h2>A VP…What?</h2>
+<p>A <a href="https://en.wikipedia.org/wiki/Virtual_private_server">Virtual Private Server (VPS)</a> is a service that you can purchase from providers such as DigitalOcean, Amazon AWS and Google Cloud Services. Instead of buying a physical server and planting it in your home somewhere, you rent a small portion of a server from a provider that looks like a normal server environment: you have your own OS and you can manage your own users and so on.</p>
+<p>In this guide, I’ll be using DigitalOcean, but you can use any VPS from any provider as long as it runs on Ubuntu 16.04 and has at least 512MB RAM and one processor. You can use <a href="https://m.do.co/c/2e2a784a04cd">this link</a> to sign up to DigitalOcean if you don’t have an account already. Bonus: you’ll receive $10 in credit.</p>
+</div>
+<div id="setting-up-a-vps-on-digitalocean" class="section level2">
+<h2>Setting up a VPS on DigitalOcean</h2>
+<p>After signing up to DO, you will see the following screen</p>
+<div class="figure">
+<img src="img/blog/shiny_series_pt1/1_createdroplet.png" />
+
+</div>
+<p>There won’t be much going on here … yet! Click on ‘create droplet’ to set up your VPS. The options are relatively straightforward here. You want to select a Ubuntu 16.04 distribution.</p>
+<div class="figure">
+<img src="img/blog/shiny_series_pt1/2_selectimage.png" />
+
+</div>
+<p>Then, you can decide how much power your droplet will have. I chose the smallest version, which works perfectly fine, but feel free to take a bigger size if you like.</p>
+<div class="figure">
+<img src="img/blog/shiny_series_pt1/3_selectsize.png" />
+
+</div>
+<p>Select an appropriate data centre (usually that means choosing one in or near your own country)</p>
+<div class="figure">
+<img src="img/blog/shiny_series_pt1/4_selectdatacenter.png" />
+
+</div>
+<p>The final set of options can look arcane if you’re not used to them. Fortunately, the only option you really need to pay attention to is the <a href="https://en.wikipedia.org/wiki/Secure_Shell">SSH key</a>.</p>
+<div class="figure">
+<img src="img/blog/shiny_series_pt1/5_selectoptions.png" />
+
+</div>
+<p>An SSH key functions as a unique identifier for you, the owner of the VPS, and adds a layer of security to your server. DigitalOcean provides a tutorial for <a href="https://www.digitalocean.com/community/tutorials/how-to-use-ssh-keys-with-putty-on-digitalocean-droplets-windows-users">Windows users</a> and <a href="https://www.digitalocean.com/community/tutorials/how-to-use-ssh-keys-with-digitalocean-droplets">Unix</a> users on their website. This step is optional: you don’t have to do it, but I strongly recommend it.</p>
+<p>After you’ve sorted out SSH access, you can choose a suitable name for your droplet and press ‘create’.</p>
+<p>Congratulations! You are now the proud owner of your own VPS.</p>
+</div>
+<div id="accessing-your-server-and-setting-up-shiny" class="section level2">
+<h2>Accessing your server and setting up shiny</h2>
+<p>Click on ‘droplets’ at the top right of the DO menu. Copy the IP address of your droplet and open up a terminal or PuTTY. Log into your server:</p>
+<pre class="shell"><code>ssh root@&lt;ip-address&gt;</code></pre>
+<div id="setting-up-a-user" class="section level3">
+<h3>Setting up a user</h3>
+<p>Since we don’t want to rely on the root user too much, we’ll create a new user called ‘shiny’. When you are prompted to enter a name, office number etc. you can just hit enter:</p>
+<pre class="shell"><code>adduser shiny</code></pre>
+<p>Next, we give the shiny user admin rights and switch to the shiny user:</p>
+<pre class="shell"><code># Give shiny admin rights
+gpasswd -a shiny sudo
+# Switch to shiny user
+su shiny</code></pre>
+</div>
+<div id="installing-dependencies" class="section level3">
+<h3>Installing dependencies</h3>
+<p>Firstly, update the list of packages:</p>
+<pre class="shell"><code>sudo apt-get update</code></pre>
+<p>Then add the CRAN repository to this list (copy these commands one by one):</p>
+<pre class="shell"><code># Add a trusted key
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
+# Add the CRAN repo
+sudo add-apt-repository &#39;deb [arch=amd64,i386] https://cran.rstudio.com/bin/linux/ubuntu xenial/&#39;
+# Update the list again
+sudo apt-get update</code></pre>
+<p>If your droplet has 1G of RAM or less, we need to set up some swap space. This will allow the server to use hard-drive space as additional RAM when it needs to:</p>
+<pre class="shell"><code># Set up swap
+sudo /bin/dd if=/dev/zero of=/var/swap.1 bs=1M count=1024
+sudo /sbin/mkswap /var/swap.1
+sudo /sbin/swapon /var/swap.1
+sudo sh -c &#39;echo &quot;/var/swap.1 swap swap defaults 0 0 &quot; &gt;&gt; /etc/fstab&#39;</code></pre>
+<p>Now, we’re ready to install R and other dependencies for shiny server:</p>
+<pre class="shell"><code># Install R
+sudo apt-get -y install r-base r-base-dev
+# Install shiny server dependencies
+sudo apt-get -y install libapparmor1 gdebi-core
+# These are used by R libraries
+sudo apt-get install -y libxml2-dev libcurl4-openssl-dev libssl-dev</code></pre>
+<p>Copy and execute the following lines to install these R packages:</p>
+<pre class="shell"><code># Install shiny
+sudo su - -c &quot;R -e \&quot;install.packages(&#39;shiny&#39;, repos=&#39;http://cran.rstudio.com/&#39;)\&quot;&quot;
+# Install devtools
+sudo su - -c &quot;R -e \&quot;install.packages(&#39;devtools&#39;, repos=&#39;http://cran.rstudio.com/&#39;)\&quot;&quot;
+# Install digest
+sudo su - -c &quot;R -e \&quot;install.packages(&#39;digest&#39;, repos=&#39;http://cran.rstudio.com/&#39;)\&quot;&quot;</code></pre>
+<p>Now we’re ready to install shiny server:</p>
+<pre class="shell"><code># Download rstudio server:
+wget https://download2.rstudio.org/rstudio-server-1.0.136-amd64.deb
+# Download shiny server:
+wget https://download3.rstudio.org/ubuntu-12.04/x86_64/shiny-server-1.5.1.834-amd64.deb
+# Install
+sudo gdebi rstudio-server-1.0.136-amd64.deb
+sudo gdebi shiny-server-1.5.1.834-amd64.deb</code></pre>
+<p>The rstudio and shiny server are now accessible on ports 8787 and 3838. You can access them by navigating to <code>&lt;your-ip-address&gt;:8787</code> in a browser.</p>
+<p>While this is fine, it’s a bit difficult to remember and not ideal for sharing. This is easily solvable! We can simply point a domain name to our new server.</p>
+</div>
+</div>
+<div id="pointing-a-domain-name-to-your-server" class="section level2">
+<h2>Pointing a domain name to your server</h2>
+<p>This step involves two actions: one from the provider you bought the domain name from, and one on the DO dashboard.</p>
+<div id="changing-name-servers" class="section level3">
+<h3>Changing name servers</h3>
+<p>The first thing we’ll do is to change the name servers of your domain name so that they point to the DO name servers. Most providers will give this option and the process is largely the same. I’ll be using my namecheap account for this exercise. If you’re using another provider, a simple google search for ‘change nameservers <provider>’ should give you the requisite information.</p>
+<p>Once you are logged into your namecheap account, you will see the following screen:</p>
+<div class="figure">
+<img src="img/blog/shiny_series_pt1/NC_fig1.png" />
+
+</div>
+<p>Click on the ‘manage’ button for the domain name you want to use. You will now see the following screen:</p>
+<div class="figure">
+<img src="img/blog/shiny_series_pt1/NC_fig2.png" />
+
+</div>
+<p>Click on the arrow (surrounded by green box) and select ‘custom DNS’ (surrounded by blue box). Add the DO name servers as shown in the image below:</p>
+<div class="figure">
+<img src="img/blog/shiny_series_pt1/namecheap2.png" />
+
+</div>
+<p>Save your changes and close the tab.</p>
+</div>
+<div id="setting-up-a-and-cname-records-on-digitalocean" class="section level3">
+<h3>Setting up A and CNAME records on DigitalOcean</h3>
+<p>In your DO dashboard, click on the ‘networking’ option</p>
+<div class="figure">
+<img src="img/blog/shiny_series_pt1/DO_networking_fig1.png" />
+
+</div>
+<p>Enter your domain name (without ‘www’) and click ‘add domain’</p>
+<div class="figure">
+<img src="img/blog/shiny_series_pt1/DO_networking_fig2.png" />
+
+</div>
+<p>We’re going to add one A-record and two CNAME records. Firstly, add ‘@’ under the hostname as in the image below, select your VPS from the drop-down list and click ‘Create Record’:</p>
+<div class="figure">
+<img src="img/blog/shiny_series_pt1/3_DO_networking.png" />
+
+</div>
+<p>Next, create a CNAME record. Under ‘hostname’ enter ‘*’, and under ‘is an alias of’, enter ‘@‘, as shown in the picture below:</p>
+<div class="figure">
+<img src="img/blog/shiny_series_pt1/4_DO_networking.png" />
+
+</div>
+<p>Next, create another CNAME record where you input ‘www’ under ‘hostname’ and ‘@’ under ‘is an alias of’:</p>
+<div class="figure">
+<img src="img/blog/shiny_series_pt1/5_DO_networking.png" />
+
+</div>
+<p>The entire setup should look like the image below</p>
+<div class="figure">
+<img src="img/blog/shiny_series_pt1/6_DO_networking.png" />
+
+</div>
+<p>You are now done setting up your domain name. It can take up to 24 hours before your domain name points to your server, but usually this takes less than several hours.</p>
+</div>
+<div id="configuring-nginx-on-your-server" class="section level3">
+<h3>Configuring nginx on your server</h3>
+<p>OK. So now your server can be accessed using a custom domain name. This is great, but rstudio and shiny server are still only accessible using the ports on which they are hosted. We’ll now set up <a href="https://en.wikipedia.org/wiki/Nginx">Nginx</a> on your server to manage the routes to the shiny and studio servers.</p>
+<p>Go back to the terminal where you’re logged into the server, and execute the following:</p>
+<pre class="shell"><code>sudo apt-get -y install nginx</code></pre>
+<p>Now, make a backup of the nginx configuration:</p>
+<pre class="shell"><code>sudo cp /etc/nginx/sites-enabled/default /etc/nginx/sites-enabled/default-backup</code></pre>
+<p>Open up the configuration file</p>
+<pre class="shell"><code>sudo nano /etc/nginx/sites-enabled/default</code></pre>
+<p>Add ‘localhost’ to the server name (green box in the image below).</p>
+<div class="figure">
+<img src="img/blog/shiny_series_pt1/1_nginx.png" />
+
+</div>
+<p>Then, copy the following lines to the config file and paste them in the location shown in the image (area surrounded by pink box). Make sure the indentation of the lines looks like the picture above. Do not use tabs, only spaces!</p>
+<pre class="text"><code>location /apps/ {
+        proxy_pass http://127.0.0.1:3838/;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection &quot;upgrade&quot;;
+}
+
+location /editor/ {
+        proxy_pass http://127.0.0.1:8787/;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection &quot;upgrade&quot;;
+}</code></pre>
+<p>Hit <code>control+x</code> and then <code>Y</code> and <code>enter</code> and your changes will be saved. Your rstudio and shiny servers are now accessible using e.g. <code>www.&lt;your-domain-name&gt;.&lt;extension&gt;/apps</code></p>
+</div>
+</div>
+<div id="adding-shiny-applications" class="section level2">
+<h2>Adding shiny applications</h2>
+<p>The easiest way to add shiny applications is to create a github or bitbucket repository for the shiny application, which you then clone in the shiny server folder. We first we need to set up user rights for our shiny user.</p>
+<div id="setting-up-permissions" class="section level3">
+<h3>Setting up permissions</h3>
+<p>Navigate to the shiny server directory where the apps live:</p>
+<pre class="shell"><code>cd /srv/shiny-server</code></pre>
+<p>Then, give the shiny user read/write permissions:</p>
+<pre class="shell"><code>sudo groupadd shiny-apps
+sudo usermod -aG shiny-apps shiny
+sudo chown -R shiny:shiny-apps .
+sudo chmod g+w .
+sudo chmod g+s .</code></pre>
+</div>
+<div id="example-hosting-an-application" class="section level3">
+<h3>Example: hosting an application</h3>
+<p>This part shows how you can store your shiny apps on github and host them on your server.</p>
+<p>Sign up for a github account if you have not already. You can also choose to use bitbucket: the process is largely the same.</p>
+<p>Create a repository</p>
+<div class="figure">
+<img src="img/blog/shiny_series_pt1/1_GH.png" />
+
+</div>
+<p>Follow the steps on the next screen to add files to your repository</p>
+<div class="figure">
+<img src="img/blog/shiny_series_pt1/3_GH.png" />
+
+</div>
+<p>When you’ve pushed your server.R and ui.R files, it should look like this</p>
+<div class="figure">
+<img src="img/blog/shiny_series_pt1/2_GH.png" />
+
+</div>
+<p>You can now clone this repository in your server by clicking the ‘clone or download’ button (surrounded by the pink box). Copy the url and go back to the terminal where you are logged into your server. Then, execute the following commands:</p>
+<pre class="shell"><code># Navigate to the folder with shiny applications
+cd /srv/shiny-server
+# Clone the repository
+git clone https://github.com/JasperHG90/TenK-example.git
+# Install dependencies
+sudo su - -c &quot;R -e \&quot;devtools::install_github(&#39;JasperHG90/TenK&#39;)\&quot;&quot;</code></pre>
+<p>You can now visit the shiny application by navigating to <code>www.&lt;your-domain-name&gt;.&lt;extension&gt;/apps/TenK-example</code> in a browser.</p>
+</div>
+<div id="some-notes-on-installing-r-packages" class="section level3">
+<h3>Some notes on installing R packages</h3>
+<p>When installing R packages, it’s best to use the following code:</p>
+<pre class="shell"><code>sudo su - -c &quot;R -e \&quot;install.packages(&#39;&lt;package-name&gt;&#39;, repos=&#39;http://cran.rstudio.com/&#39;)\&quot;&quot;</code></pre>
+<p>This ensures that packages are installed globally and that every user has access to it.</p>
+<div id="using-packrat" class="section level4">
+<h4>Using packrat</h4>
+<p>You can use packrat - a package management system authored by rstudio - for shiny applications. Packrat is quite useful because it creates a local repository (with, for example, specific package versions) of packages. The advantage of this approach is that it improves the portability of the application and ensures that apps that use the same dependencies but, for example, different versions of that dependency can easily run on the same system. On the flip side, it does not work very well with certain specific libraries such as rgdal. You can read more about packrat on <a href="https://rstudio.github.io/packrat/">this page</a>.</p>
+<div id="setting-up-packrat" class="section level5">
+<h5>Setting up packrat</h5>
+<p>Setting up packrat is easy. In rstudio, start a new project (or open an existing one).</p>
+<div class="figure">
+<img src="img/blog/shiny_series_pt1/1_packrat.png" />
+
+</div>
+<p>Go to the packrat section and check the box</p>
+<div class="figure">
+<img src="img/blog/shiny_series_pt1/2_packrat.png" />
+
+</div>
+<p>Packrat will now make a local repository with necessary packages. This can take a while.</p>
+<div class="figure">
+<img src="img/blog/shiny_series_pt1/3_packrat.png" />
+
+</div>
+<p>Don’t forget to <a href="https://help.github.com/articles/adding-a-file-to-a-repository-using-the-command-line/">push</a> these changes to your github repository.</p>
+</div>
+<div id="cloning-the-repo-and-restoring-the-library" class="section level5">
+<h5>Cloning the repo and restoring the library</h5>
+<p>Adding shiny apps with a packrat library is similar to the process outlined above.</p>
+<p>First, install the packrat package:</p>
+<pre class="shell"><code>sudo su - -c &quot;R -e \&quot;install.packages(&#39;packrat&#39;, repos=&#39;http://cran.rstudio.com/&#39;)\&quot;&quot;</code></pre>
+<p>Navigate to the <code>/srv/shiny-server</code> folder and clone the repository:</p>
+<pre class="shell"><code># Navigate to the folder
+cd /srv/shiny-server
+# Clone the repo
+git clone https://github.com/JasperHG90/tenk-example-2.git</code></pre>
+<p>Enter the repository and start an R session:</p>
+<pre class="shell"><code># Enter the folder
+cd tenk-example-2
+# Start an R session
+R</code></pre>
+<p>Packrat should automatically kick in and start installing packages. If it doesn’t, execute the following:</p>
+<pre class="r"><code>packrat::restore()</code></pre>
+<div class="figure">
+<img src="img/blog/shiny_series_pt1/4_packrat.png" />
+
+</div>
+<p>Execute <code>q()</code> to quit the R session</p>
+</div>
+</div>
+</div>
+</div>
+<div id="future-content-in-this-series" class="section level2">
+<h2>Future content in this series</h2>
+<p>This wraps up the first part of the shiny server series. You now have a VPS with a custom domain name running rstudio server and shiny server. This setup forms the basis on which the next installments in this series build.</p>
+<p>Subsequent parts in this series will focus on the following topics</p>
+<div id="part-2-running-shiny-server-on-multiple-ports" class="section level3">
+<h3>Part 2: running shiny server on multiple ports</h3>
+<p>We’ll run shiny server on multiple ports so that we have one server to host public shiny apps and another server to host private apps for a select group of people. We’ll add user authentication to this private server in part 4 of this series.</p>
+</div>
+<div id="part-3-adding-an-ssl-security-certificate" class="section level3">
+<h3>Part 3: adding an SSL security certificate</h3>
+<p>Before we can add user authentication to shiny, we want to set up an SSL certificate to buff security on our server. This encrypts traffic from and to your server.</p>
+</div>
+<div id="part-4-adding-user-authentication-to-your-server-using-auth0" class="section level3">
+<h3>Part 4: adding user authentication to your server using Auth0</h3>
+<p>In this part, we’ll use Auth0, a free service for up to 7.000 users, to add authentication to our shiny server running private applications. To this end, we’ll slightly adapt the excellent <a href="https://auth0.com/blog/adding-authentication-to-shiny-server/">Auth0 tutorial</a> to work with our setup.</p>
+</div>
+<div id="part-5-hosting-a-static-website-on-your-server" class="section level3">
+<h3>Part 5: hosting a static website on your server</h3>
+<p>Most websites have a front end and a back end. The front end is what you see when you visit a page. The back end usually consists of one or more databases and services such as user authentication. Conversely, a <a href="https://en.wikipedia.org/wiki/Static_web_page">static website</a> is simply a front end: you pre-compile all necessary materials before hosting it on a server. Static websites do not require databases and are typically fast to load. Examples of services that help you make static websites are <a href="https://jekyllrb.com">Jekyll</a> and <a href="https://blog.getpelican.com">Pelican</a>, to name a few.</p>
+<p>You can use the GitHub approach outlined above for shiny applications for static websites as well. You create a repository, upload the static website, and then clone it in the directory from which nginx hosts its example page.</p>
+</div>
+</div>
+
+    </div>
+ 
+    <ul class="article-taxonomy">
+                  
+      <hr>
+      <li>
+        <i class="fa fa-category"></i><a href="/categories/tutorial">tutorial</a>
+      </li>
+      
+    
+      
+  </article>
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank"><i class="fa fa-rss"></i> RSS feed</a>
+          </li>
+          <li>
+            <a href="https://github.com/mobybit/hugo-natrium-theme"><i class="fa fa-github"></i> Code</a>
+          </li>
+          <li>
+            <a href="/site-notice">Site notice</a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+
+  </body>
+</html>
+

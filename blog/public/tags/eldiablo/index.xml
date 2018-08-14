@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>EL:DIABLO on Natrium Theme</title>
+    <link>/tags/eldiablo/</link>
+    <description>Recent content in EL:DIABLO on Natrium Theme</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 18 Jan 2015 14:20:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/eldiablo/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Distilling Event Data from News Articles</title>
+      <link>/distilling-event-data-from-news-articles/</link>
+      <pubDate>Sun, 18 Jan 2015 14:20:00 +0000</pubDate>
+      
+      <guid>/distilling-event-data-from-news-articles/</guid>
+      <description>Whereas general readers consume news to remain informed, social scientists use the same news to extract data on the events reported in order to study their meaning. Before 2000, researchers coded small datasets based on reputable news sources to extract events. Since then, increasingly sophisticated algorithms and computing standards (e.g. Natural Language Processing and Machine Learning) allow us to expand this process to an unprecedented scale, turning event data into an invaluable tool to monitor e.</description>
+    </item>
+    
+  </channel>
+</rss>

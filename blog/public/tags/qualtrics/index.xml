@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>QualtRics on Natrium Theme</title>
+    <link>/tags/qualtrics/</link>
+    <description>Recent content in QualtRics on Natrium Theme</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 16 Jun 2017 15:59:13 -0400</lastBuildDate>
+    
+	<atom:link href="/tags/qualtrics/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>qualtRics 2.0 now available from CRAN</title>
+      <link>/qualtrics-2.0-now-available-from-cran/</link>
+      <pubDate>Fri, 16 Jun 2017 15:59:13 -0400</pubDate>
+      
+      <guid>/qualtrics-2.0-now-available-from-cran/</guid>
+      <description>qualtRics version 2.0 is now available from CRAN. This version contains several additional features and simplifies the process of importing survey exports from Qualtrics. Below, I outline the most important changes. You can check the full changelog here.
+qualtRics configuration file In previous versions, users needed to register their API key by calling the registerApiKey() function to avoid having to pass it to each function. However, they did need to pass the root url to each function, which is annoying and inconsistent.</description>
+    </item>
+    
+  </channel>
+</rss>

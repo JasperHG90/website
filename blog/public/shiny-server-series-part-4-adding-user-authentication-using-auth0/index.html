@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.46" />
+
+
+<title>Shiny server series part 4: adding user authentication using Auth0 - Natrium Theme</title>
+<meta property="og:title" content="Shiny server series part 4: adding user authentication using Auth0 - Natrium Theme">
+
+
+
+  
+  <meta property="description" content="We’re nearly at the end of the shiny server series, and that means that we’ll be getting into the really useful parts. In this tutorial, we’ll use Auth0 to set up user authentication to regulate access to our private shiny server.">
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" media="all">
+<link rel="stylesheet" href="/css/fonts.css">
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <ul class="nav-links">
+    <a href="/">
+    Home
+    </a>
+    
+    <li><a href="/categories">Categories</a></li>
+    
+    <li><a href="/tags">Tags</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+  <article class="article">
+    <h1 class="article-title">Shiny server series part 4: adding user authentication using Auth0</h1>
+    
+    <span class="article-date">2017-04-30</span>
+    
+
+    <div class="article-content">
+      
+
+<p><em>This guide is part of a series on setting up your own private server running shiny apps. There are many guides with great advice on how to set up an R shiny server and related software. I try to make a comprehensive guide based in part on these resources as well as my own experiences. I always aim to properly attribute information to their respective sources. If you notice an issue, please contact me.</em></p>
+
+<p>Part 1 of this series is available <a href="https://www.jasperginn.nl/shiny-server-series-pt1/">here</a></p>
+
+<p>Part 2 of this series is available <a href="https://www.jasperginn.nl/shiny-server-series-pt2/">here</a></p>
+
+<p>Part 3 of this series is available <a href="https://www.jasperginn.nl/shiny-server-series-pt3/">here</a></p>
+
+<p>We’re nearly at the end of the shiny server series, and that means that we’ll be getting into the really useful parts. In this tutorial, we’ll use <a href="http://auth0.com">Auth0</a> to set up user authentication to regulate access to our private shiny server.</p>
+
+<h2 id="resources-used-for-this-part">Resources used for this part</h2>
+
+<p>This guide draws on <a href="https://auth0.com/blog/adding-authentication-to-shiny-server/">this</a> excellent tutorial produced by Auth0.</p>
+
+<h2 id="where-were-we">Where were we?</h2>
+
+<p>In the <a href="https://www.jasperginn.nl/shiny-server-series-pt3/">previous part</a>,  we set up SSL encryption on our server. This makes user authentication safer by encrypting traffic to and from the server. Remember, however, that we didn’t yet set up nginx to use this SSL certificate. So although we set up all the prerequisites, SSL encryption is not yet operational.</p>
+
+<p>As always, the first thing we’ll do is log into the server</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#999;font-style:italic"># Log into the server
+</span><span style="color:#999;font-style:italic"></span>ssh root@&lt;your-VPS-ip&gt;</code></pre></div>
+<p>Before you do anything else, take a note of the location where Let’s encrypt stored your certificate. It’s easiest to just navigate to the following folder</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#24909d">cd</span> /etc/letsencrypt/live</code></pre></div>
+<p>And execute</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">ls</code></pre></div>
+<p>Write down the name of this folder, you’ll need it to complete the next step.</p>
+
+<p>Now, we can switch to the shiny user:</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">su shiny
+<span style="color:#999;font-style:italic"># Navigate to shiny home
+</span><span style="color:#999;font-style:italic"></span>cd</code></pre></div>
+<p>Back up the nginx configuration in case something goes wrong. Then, delete the config and open a new default config file:</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/default2
+<span style="color:#999;font-style:italic"># Delete default
+</span><span style="color:#999;font-style:italic"></span>sudo rm /etc/nginx/sites-available/default
+<span style="color:#999;font-style:italic"># Make a new default config
+</span><span style="color:#999;font-style:italic"></span>sudo nano /etc/nginx/sites-available/default</code></pre></div>
+<p>The next part can be a bit tricky. Take a look at the config file below. You need to replace <code>&lt;your-domain-name&gt;</code> with the following:</p>
+
+<ol>
+<li>In lines <strong>19-20</strong>, replace the text by the name of the folder you just wrote down.</li>
+<li>In lines <strong>39</strong> and <strong>91</strong>, replace the text by your custom domain name, <strong>with and without</strong> ‘www’</li>
+</ol>
+
+<p>I’ve added some helpful screenshots below for clarification. It’s easiest to just copy-paste this into a notepad file and replace the values before pasting it into the nano editor.</p>
+
+<p>{% gist e5b72673858886e0d5772ac40da0ee06 %}</p>
+
+<p>The image below shows what this looks like in the nano editor.</p>
+
+<p>(here’s the top part of the config file)
+<img src="img/blog/shiny_series_pt4/replacmeents.png" alt="" /></p>
+
+<p>(and here’s the bottom part)
+<img src="img/blog/shiny_series_pt4/replacements2.png" alt="" /></p>
+
+<p>After pasting the new configuration, save the file by hitting <code>control+x</code> and then <code>Y</code> and <code>enter</code>. Then, restart the nginx service:</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo service nginx restart</code></pre></div>
+<p>In your browser, navigate to your domain name. If all went well, you should now see the lock symbol indicating that the setup is a success!</p>
+
+<p><img src="img/blog/shiny_series_pt4/authenticated.png" alt="" /></p>
+
+<h2 id="what-does-this-new-config-file-do">What does this new config file do?</h2>
+
+<p>Glad you asked. This config file makes sure that we use the Let’s Encrypt SSL certificate we created earlier. We also keep the locations we’ve been using so far, but we changed the config files for the private-apps shiny server. This configuration file re-routs all traffic through the Auth0 authentication service we’ll set up in a second. If the user successfully authenticates, they will be forwarded to the private shiny environment.</p>
+
+<h2 id="setting-up-your-auth0-account">Setting up your Auth0 account</h2>
+
+<p>Navigate to the <a href="https://manage.auth0.com/login">Auth0 website</a> and sign up for an account. A free account works with up to 7.000 users, so this should be more than enough.</p>
+
+<p>Navigate to connections and remove all social logins. We won’t be needing them for this application as we’ll be setting up an email whitelist:</p>
+
+<p><img src="img/blog/shiny_series_pt4/auth0removesociallogins.png" alt="" /></p>
+
+<p>Go to ‘clients’ and click on ‘create client’</p>
+
+<p><img src="img/blog/shiny_series_pt4/auth0_step1.png" alt="" /></p>
+
+<p>Name your application and choose ‘regular web app’:</p>
+
+<p><img src="img/blog/shiny_series_pt4/auth0_step2.png" alt="" /></p>
+
+<p>Now go to ‘settings’, note down your domain, client ID and secret ID, and add a callback url in the following format:</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">https://www.&lt;your-domain-name&gt;.&lt;extension&gt;/private-apps/callback,
+https://&lt;your-domain-name&gt;.&lt;extension&gt;/private-apps/callback</code></pre></div>
+<p><img src="img/blog/shiny_series_pt4/auth0_step3.png" alt="" /></p>
+
+<p>Scroll down and save your changes. Then, navigate to ‘rules’ and click on ‘create first rule’:</p>
+
+<p><img src="img/blog/shiny_series_pt4/auth0_step4.png" alt="" /></p>
+
+<p>From this list, select ‘whitelist for a specific app’:</p>
+
+<p><img src="img/blog/shiny_series_pt4/auth0_step5.png" alt="" /></p>
+
+<p>Change the name of the app (red box) to your application name, then add the email addresses that are allowed to make an account (gold box):</p>
+
+<p><img src="img/blog/shiny_series_pt4/auth0_step6.png" alt="" /></p>
+
+<h2 id="setting-up-the-auth0-service">Setting up the Auth0 service</h2>
+
+<p>Go back to the terminal and clone my fork of the auth0 shiny-auth0 repository:</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#24909d">cd</span> ~ &amp;&amp; git clone https://github.com/JasperHG90/shiny-auth0.git</code></pre></div>
+<p>Install nodejs and npm</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo apt-get install -y nodejs npm</code></pre></div>
+<p>Enter the shiny-auth0 repository and let npm install the dependencies</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#24909d">cd</span> shiny-auth0 &amp;&amp; npm install</code></pre></div>
+<p>Go to <a href="http://www.unit-conversion.info/texttools/random-string-generator/">this website</a> and generate a random string of 40 characters. Copy-paste this string in a temporary document. You will need it a little later.</p>
+
+<p>Go back to the terminal and create a file called ‘.env’ in the shiny-auth0 directory:</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"> nano .env</code></pre></div>
+<p>Copy the lines below into a temporary document and add the required information</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">AUTH0_CLIENT_SECRET=yoursecretid
+AUTH0_CLIENT_ID=yourclientid
+AUTH0_DOMAIN=yourdomain
+AUTH0_CALLBACK_URL=https://&lt;your-domain-name&gt;.&lt;extension&gt;/private-apps/callback
+COOKIE_SECRET=random string generated in the previous step
+SHINY_HOST=localhost
+SHINY_PORT=4949
+PORT=3000</code></pre></div>
+<p>Save the file by hitting <code>control+x</code> and then <code>Y</code> and <code>enter</code>. Make a symlink for nodejs so it can also be called with ‘node’:</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo ln -s <span style="color:#ed9d13">`</span>which nodejs<span style="color:#ed9d13">`</span> /usr/bin/node</code></pre></div>
+<p>Run the app using:</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">npm start</code></pre></div>
+<p>Now, go to: <code>www.&lt;your-domain-name&gt;.&lt;extension&gt;/private-apps/</code> to see if it works.</p>
+
+<p>Now that we know that user authentication works, we need to make sure that the Auth0 service can quietly run in the background like a regular service. Hit <code>control + C</code> in the terminal to stop the nodejs server. Then, execute</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo nano /etc/systemd/system/shiny-auth0.service</code></pre></div>
+<p>and copy-paste the following:</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">[Service]
+ExecStart=/usr/bin/node /home/shiny/shiny-auth0/bin/www
+Restart=always
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=shiny
+User=shiny
+Group=shiny
+WorkingDirectory=/home/shiny/shiny-auth0/
+Environment=NODE_ENV=production
+
+[Install]
+WantedBy=multi-user.target</code></pre></div>
+<p>Hit <code>Control + X</code>, <code>Y</code> and then <code>enter</code>. Then, execute the next two lines:</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo systemctl <span style="color:#24909d">enable</span> shiny-auth0
+sudo systemctl start shiny-auth0</code></pre></div>
+<p>This automatically starts up the auth0 server every time the server restarts.</p>
+
+<h2 id="wrapping-up">Wrapping up</h2>
+
+<p>Congratulations, user authentication is now set up! This wraps up part 4 of the shiny server series. In the last instalment, we’ll be adding a simple static website created using Jekyll.</p>
+
+    </div>
+ 
+    <ul class="article-taxonomy">
+                  
+      <hr>
+      <li>
+        <i class="fa fa-category"></i><a href="/categories/tutorial">tutorial</a>
+      </li>
+      
+    
+      
+  </article>
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank"><i class="fa fa-rss"></i> RSS feed</a>
+          </li>
+          <li>
+            <a href="https://github.com/mobybit/hugo-natrium-theme"><i class="fa fa-github"></i> Code</a>
+          </li>
+          <li>
+            <a href="/site-notice">Site notice</a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+
+  </body>
+</html>
+

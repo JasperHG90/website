@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.46" />
+
+
+<title>Mapping your phone&#39;s location history, part 1 - Natrium Theme</title>
+<meta property="og:title" content="Mapping your phone&#39;s location history, part 1 - Natrium Theme">
+
+
+
+  
+  <meta property="description" content="It&#39;s no secret that phone manufacturers log your geolocation at all times, but at least they&#39;re open about it these days. I had no doubts that my Google Nexus 5 phone logged every move I made, and I was interested to see how I could map these geolocations">
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" media="all">
+<link rel="stylesheet" href="/css/fonts.css">
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <ul class="nav-links">
+    <a href="/">
+    Home
+    </a>
+    
+    <li><a href="/categories">Categories</a></li>
+    
+    <li><a href="/tags">Tags</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+  <article class="article">
+    <h1 class="article-title">Mapping your phone&#39;s location history, part 1</h1>
+    
+    <span class="article-date">2014-12-06</span>
+    
+
+    <div class="article-content">
+      
+
+<p>It&rsquo;s no secret that phone manufacturers log your geolocation at all times, but at least they&rsquo;re open about it these days. I had no doubts that my Google Nexus 5 phone logged every move I made, and I was interested to see how I could map these geolocations.</p>
+
+<p>If you&rsquo;re using Android, you can download your location history from your <a href="https://maps.google.com/locationhistory/b/0">gmail account</a>. Once in the location history menu, you can select and view at most 30 days worth of history. This is slightly annoying if you want an oversight of, say, the past six months.</p>
+
+<p>In order to work around this limitation, you can simply download the data for each month. The data is downloaded as a &lsquo;KML&rsquo; file. Chances are that you (like me) are not that familiar with KML files. However, a quick look suggests that it is some form of XML file, which means that we can use BeautifulSoup to extract the data. You can download the script I used for this process <a href="https://github.com/JasperHG90/ConvertKML">here</a>.</p>
+
+<p>Once you have extracted the data from the KML files, you are ready to load the data into R:</p>
+
+<p>{% highlight R %}</p>
+
+<h1 id="remove-objects-stored-in-global-environment">Remove objects stored in global environment</h1>
+
+<p>rm(list=ls())</p>
+
+<h1 id="set-working-directory">set working directory</h1>
+
+<p>setwd(&ldquo;/Users/Jasper/Documents/Private/Wordpres/Old/Blog9_GoogleTracking/Setup/&ldquo;)</p>
+
+<h1 id="load-libraries">Load libraries</h1>
+
+<p>require(ggplot2) ## &ndash;&gt; For plotting beautiful figures
+require(ggmap) ## &ndash;&gt; Plotting maps
+require(raster) ## &ndash;&gt; To get administrative maps
+require(rgdal) ## &ndash;&gt; basic spatial functions
+require(dplyr) ## &ndash;&gt; data management
+require(lubridate) ## &ndash;&gt; working with date formats</p>
+
+<h1 id="load-data">load data</h1>
+
+<p>data &lt;- tbl_df(read.csv(paste0(getwd(),&ldquo;/data/&rdquo;,&ldquo;location_data.txt&rdquo;), sep=&ldquo;;&rdquo;, header=T))
+{% endhighlight %}</p>
+
+<p>First, I would like to see roughly how many locations are logged daily on my phone. The <a href="http://cran.r-project.org/web/packages/lubridate/index.html">lubridate</a> package allows us to easily convert raw dates into more workable formats. We then use <a href="http://cran.r-project.org/web/packages/dplyr/index.html">dplyr</a> to group and summarize the data by date. Essentially, this simply leaves us with counts of logged locations for each day.<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup> We can then plot these counts using <a href="http://cran.r-project.org/web/packages/ggplot2/index.html">ggplot2</a>.</p>
+
+<p>{% highlight R %}</p>
+
+<h1 id="convert-the-date-stamps-into-year-month-day-format">Convert the date stamps into Year-Month-Day format</h1>
+
+<p>data$Datestamp &lt;- as.Date(ymd(data$Datestamp))</p>
+
+<h1 id="summarize">Summarize</h1>
+
+<p>locsum &lt;- data %&gt;%
+    group_by(Datestamp) %&gt;%
+    summarize(count=n())</p>
+
+<h1 id="plot">Plot</h1>
+
+<p>ggplot(locsum, aes(x=Datestamp, y=count)) +
+    geom_line(size=2, alpha=0.8) +
+    theme_bw() +
+    scale_x_date(breaks=&ldquo;months&rdquo;, minor_breaks=&ldquo;weeks&rdquo;, labels=date_format(&ldquo;%b %d&rdquo;), name=&ldquo;Date&rdquo;) +
+    scale_y_continuous(name=&ldquo;Number of logged locations&rdquo;) +
+    theme(legend.text = element_text(size = 13),
+    legend.title = element_text(size=15, face=&ldquo;bold&rdquo;),
+    axis.title.x = element_text(face=&ldquo;bold&rdquo;,size=20),
+    axis.title.y = element_text(face=&ldquo;bold&rdquo;,size=20),
+    axis.text.x = element_text(size=&ldquo;15&rdquo;),
+    axis.text.y = element_text(size=&ldquo;15&rdquo;),
+    panel.background = element_rect(fill = &ldquo;transparent&rdquo;,colour = NA),
+    panel.grid.minor = element_blank(),
+    panel.grid.major = element_blank(),
+    panel.border = element_blank(),
+    axis.line = element_line(color = &lsquo;black&rsquo;))
+{% endhighlight %}</p>
+
+<p>In the image below, you see the number of logged locations (y-axis) for each given day (x-axis). On average, my phone logs 556 locations per day. The exception here being April 6th, where I may have switched off my mobile data service.</p>
+
+<div>
+    <img src="https://www.jasperginn.nl/assets/images/blog/phone_location_history/Counts.png">
+</div>
+
+<p>We&rsquo;re going to use ggplot2 and ggmaps (part of the ggplot2 package) to plot our data. First, we fetch a static google map via the ggmap package. Then, we download a <a href="http://en.wikipedia.org/wiki/Shapefile">shapefile</a> with administrative regions, and transform the coordinate system to <a href="http://en.wikipedia.org/wiki/World_Geodetic_System">WGS84</a> such that we can put the layer on top of the google map. In order for ggmap to be able to &lsquo;understand&rsquo; the geolocations, we have to use a function called &lsquo;fortify&rsquo;. After that, we&rsquo;re all ready to go!</p>
+
+<p>{% highlight R %}</p>
+
+<h4 id="netherlands-in-total">Netherlands in total</h4>
+
+<h1 id="fetch-a-google-map">Fetch a google map</h1>
+
+<p>NL.map &lt;- get_map(location = &ldquo;the netherlands&rdquo;, maptype = &ldquo;hybrid&rdquo;,
+color = &ldquo;bw&rdquo;, zoom = 8)</p>
+
+<h1 id="download-shapefile-with-administrative-regions">Download shapefile with administrative regions</h1>
+
+<p>shpData &lt;- getData(&lsquo;GADM&rsquo;, country=&lsquo;netherlands&rsquo;, level=1)</p>
+
+<h1 id="transform-to-wgs84-coordinate-system">Transform to WGS84 coordinate system</h1>
+
+<p>shpData &lt;- spTransform(shpData, CRS(&ldquo;+proj=longlat +datum=WGS84&rdquo;))</p>
+
+<h1 id="fortify-shapefile-so-ggmap-can-read-it">Fortify shapefile so ggmap can read it</h1>
+
+<p>shpData &lt;- fortify(shpData)</p>
+
+<h1 id="plot-map-shapefile">plot map + shapefile</h1>
+
+<p>nlMap &lt;- ggmap(NL.map) + geom_polygon(aes(x=long, y=lat, group=group),
+data=shpData, color =&ldquo;blue&rdquo;, fill =&ldquo;blue&rdquo;, alpha = .1, size = .3)</p>
+
+<h1 id="plot-map-shapefile-datapoints">plot (map + shapefile) + datapoints</h1>
+
+<p>nlMap + geom_point(data = data, aes(x = longitude, y = latitude),
+color = &ldquo;darkred&rdquo;, alpha = 0.4, size = 3) +
+scale_colour_manual(values=c(&ldquo;blue&rdquo;,&ldquo;red&rdquo;))
+{% endhighlight %}</p>
+
+<p>The image below basically plots the latitude against the longitude values, and adds the google map, shapefile with administrative regions (blue) and my geolocations (red). I mostly travel by train, so you can actually make out the train tracks on this image.</p>
+
+<div>
+    <img src="https://www.jasperginn.nl/assets/images/blog/phone_location_history/WholeNed.png">
+</div>
+
+<p>What if we want to take a closer look at, say, locations in a specific municipality? Because ggmap works well with Google maps, you can basically specify any location name the same way you would on Google maps. In the example below, we&rsquo;re zooming in and plotting locations in Amsterdam only. Unfortunately, we cannot easily download shapefiles for administrative regions on the municipality level through R. However, the package <a href="http://cran.r-project.org/web/packages/rgdal/index.html">rgdal</a> allows us to import shapefiles downloaded from the internet and luckily, there are <a href="http://guides.library.upenn.edu/content.php?pid=324392&sid=2655132">many places</a> where we can download such shapefiles, and a quick Google search would give you even more.</p>
+
+<p>{% highlight R %}</p>
+
+<h5 id="only-amsterdam">Only Amsterdam</h5>
+
+<h1 id="fetch-google-map-of-amsterdam">Fetch google map of amsterdam</h1>
+
+<p>AMS.map &lt;- get_map(location = &ldquo;amsterdam&rdquo;, maptype = &ldquo;hybrid&rdquo;,
+color = &ldquo;bw&rdquo;, zoom = 12)
+require(rgdal)</p>
+
+<h1 id="import-shapefile">Import shapefile</h1>
+
+<p>muni &lt;- readOGR(&ldquo;.&rdquo;, &ldquo;brtk2010_ind2005_region&rdquo;)</p>
+
+<h1 id="transform-coordinate-system-to-wgs84">Transform coordinate system to WGS84</h1>
+
+<p>muni &lt;- spTransform(muni, CRS(&ldquo;+proj=longlat +datum=WGS84&rdquo;))</p>
+
+<h1 id="transform-so-that-ggplot-can-use-the-file">Transform so that ggplot can use the file</h1>
+
+<p>muni &lt;- fortify(muni)</p>
+
+<h1 id="map-shapefile-plot">Map + shapefile plot</h1>
+
+<p>amsMap &lt;- ggmap(AMS.map) + geom_polygon(aes(x=long, y=lat, group=group),
+data=muni, color =&ldquo;orange&rdquo;, fill =&ldquo;orange&rdquo;, alpha = .08, size = .1)</p>
+
+<h1 id="add-points">Add points</h1>
+
+<p>amsMap + geom_point(data = data, aes(x = longitude, y = latitude),
+    color = &ldquo;darkred&rdquo;, alpha = 0.4, size = 3) +
+    scale_colour_manual(values=c(&ldquo;blue&rdquo;,&ldquo;red&rdquo;))
+{% endhighlight %}</p>
+
+<div>
+    <img src="https://www.jasperginn.nl/assets/images/blog/phone_location_history/ggmapAms.png">
+</div>
+
+<p>This is one of the <a href="http://bcb.dfci.harvard.edu/~aedin/courses/R/CDC/maps.html">many ways</a> we can plot geospatial data in R. Although you could go even further and analyze the places you visit most often, it&rsquo;s mainly just a fun exercise. If you would like more information about plotting geospatial data in R, I would recommend going through <a href="http://stat405.had.co.nz/ggmap.pdf">this</a> short paper co-authored by <a href="http://had.co.nz/">Hadley Wickam</a>, the developer of ggplot2 and dplyr.</p>
+
+<p>Part 2 will focus on creating more appealing visuals.</p>
+
+<h1>Notes</h1>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:1">I&rsquo;ll be using the chaining (&lsquo;%&gt;%&rsquo;) function from the dplyr package. This way, we can get to the summarized results in one go. If you&rsquo;re not familiar with dplyr, check out <a href="http://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html">its vignette</a> on CRAN. It is definitely worth it.
+ <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+</ol>
+</div>
+
+    </div>
+ 
+    <ul class="article-taxonomy">
+                  
+      <hr>
+      <li>
+        <i class="fa fa-category"></i><a href="/categories/tutorial">tutorial</a>
+      </li>
+      
+    
+      
+  </article>
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank"><i class="fa fa-rss"></i> RSS feed</a>
+          </li>
+          <li>
+            <a href="https://github.com/mobybit/hugo-natrium-theme"><i class="fa fa-github"></i> Code</a>
+          </li>
+          <li>
+            <a href="/site-notice">Site notice</a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+
+  </body>
+</html>
+

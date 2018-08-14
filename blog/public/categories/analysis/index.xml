@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Analysis on Natrium Theme</title>
+    <link>/categories/analysis/</link>
+    <description>Recent content in Analysis on Natrium Theme</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 09 Jul 2016 15:26:00 +0000</lastBuildDate>
+    
+	<atom:link href="/categories/analysis/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>&#39;Semantic fingerprinting&#39; 10-K business descriptions</title>
+      <link>/semantic-fingerprinting-10-k-business-descriptions/</link>
+      <pubDate>Sat, 09 Jul 2016 15:26:00 +0000</pubDate>
+      
+      <guid>/semantic-fingerprinting-10-k-business-descriptions/</guid>
+      <description>For me, one of the most interesting areas of data analytics is in processing text as data. Because texts are created by humans, they tend to be difficult to interpret, biased, error-prone and idiosyncratic. This is exactly what makes text interesting as a source of data. In the past few months, I&amp;rsquo;ve been working on a project that involves analyzing annual reports of U.S. firms. After scraping the 10-K reports from the SEC website (using this R package), we extract the business description section of each report.</description>
+    </item>
+    
+    <item>
+      <title>What can crowdsourced data tell us about the conduct of elections?</title>
+      <link>/what-can-crowdsourced-data-tell-us-about-the-conduct-of-elections/</link>
+      <pubDate>Fri, 25 Sep 2015 12:45:00 +0000</pubDate>
+      
+      <guid>/what-can-crowdsourced-data-tell-us-about-the-conduct-of-elections/</guid>
+      <description>This article was written by Johanna Renz around about the time of the 2015 Nigerian Elections. The scripts used to download the data from reclaimnaija can be found on GitHub.
+So far, not many social scientists have paid attention to crowd sourced data, which is essentially all data that is collected through the contributions of a crowd. In contrast to many ‘conventional’ data sources, crowd sourced data can offer information almost instantly and on a high level of detail.</description>
+    </item>
+    
+    <item>
+      <title>The Alleged Return of the Bear: Framing Russian Threat and NATO Discourse in Finland</title>
+      <link>/the-alleged-return-of-the-bear-framing-russian-threat-and-nato-discourse-in-finland/</link>
+      <pubDate>Sun, 23 Aug 2015 16:49:00 +0000</pubDate>
+      
+      <guid>/the-alleged-return-of-the-bear-framing-russian-threat-and-nato-discourse-in-finland/</guid>
+      <description>This article was written by Miika Korja just before Finland&amp;rsquo;s national elections on 19 April 2015. Most of the content is still very relevant, and discusses the impact of Russia&amp;rsquo;s behaviour in the international arena on the NATO debate in Finland. 
+In 2012 the Commander of the Russian Armed Forces General Nikolai Makarov, publicly advised Finland not to become a member of NATO, as this would render a security threat for Russia.</description>
+    </item>
+    
+    <item>
+      <title>Coursera&#39;s Data Deluge (and what it tells us about the behavior of online learners)</title>
+      <link>/courseras-data-deluge-and-what-it-tells-us-about-the-behavior-of-online-learners/</link>
+      <pubDate>Fri, 17 Apr 2015 11:20:00 +0000</pubDate>
+      
+      <guid>/courseras-data-deluge-and-what-it-tells-us-about-the-behavior-of-online-learners/</guid>
+      <description>This post was first published on the website of the Leiden Center for Innovation Online Learning Lab.
+Leiden University runs a variety of different Massive Open Online Courses (MOOCs). Over the past two years, it has produced 11 iterations of 6 unique MOOCs, and further moved Terrorism and Counterterrorism: Comparing Theory and Practice (as one of an initial 73 courses) to Coursera’s new on-demand platform. Each one of these courses generates a wealth of behavioral data by which we can evaluate teaching methods, improve on-campus education, and offer a platform for academic research to investigate learning behavior of students with different educational and cultural backgrounds.</description>
+    </item>
+    
+    <item>
+      <title>The gender gap in director compensation at S&amp;P500 firms</title>
+      <link>/the-gender-gap-in-director-compensation-at-sp500-firms/</link>
+      <pubDate>Sat, 29 Nov 2014 14:03:00 +0000</pubDate>
+      
+      <guid>/the-gender-gap-in-director-compensation-at-sp500-firms/</guid>
+      <description>Data and scripts available upon request
+After reading several articles on remuneration across gender in the boards of S&amp;amp;P500 firms (see here, here and here), I wondered if it was possible to get a closer look at it.
+I happened to have access to BoardEx, a high-quality database that contains a lot of information on corporate boards and their board members, so I wrote a little script to scrape all the data about S&amp;amp;P500 board members.</description>
+    </item>
+    
+  </channel>
+</rss>

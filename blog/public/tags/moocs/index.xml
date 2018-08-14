@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>MOOCs on Natrium Theme</title>
+    <link>/tags/moocs/</link>
+    <description>Recent content in MOOCs on Natrium Theme</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 17 Apr 2015 11:20:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/moocs/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Coursera&#39;s Data Deluge (and what it tells us about the behavior of online learners)</title>
+      <link>/courseras-data-deluge-and-what-it-tells-us-about-the-behavior-of-online-learners/</link>
+      <pubDate>Fri, 17 Apr 2015 11:20:00 +0000</pubDate>
+      
+      <guid>/courseras-data-deluge-and-what-it-tells-us-about-the-behavior-of-online-learners/</guid>
+      <description>This post was first published on the website of the Leiden Center for Innovation Online Learning Lab.
+Leiden University runs a variety of different Massive Open Online Courses (MOOCs). Over the past two years, it has produced 11 iterations of 6 unique MOOCs, and further moved Terrorism and Counterterrorism: Comparing Theory and Practice (as one of an initial 73 courses) to Coursera’s new on-demand platform. Each one of these courses generates a wealth of behavioral data by which we can evaluate teaching methods, improve on-campus education, and offer a platform for academic research to investigate learning behavior of students with different educational and cultural backgrounds.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Boardex on Natrium Theme</title>
+    <link>/tags/boardex/</link>
+    <description>Recent content in Boardex on Natrium Theme</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 29 Nov 2014 14:03:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/boardex/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>The gender gap in director compensation at S&amp;P500 firms</title>
+      <link>/the-gender-gap-in-director-compensation-at-sp500-firms/</link>
+      <pubDate>Sat, 29 Nov 2014 14:03:00 +0000</pubDate>
+      
+      <guid>/the-gender-gap-in-director-compensation-at-sp500-firms/</guid>
+      <description>Data and scripts available upon request
+After reading several articles on remuneration across gender in the boards of S&amp;amp;P500 firms (see here, here and here), I wondered if it was possible to get a closer look at it.
+I happened to have access to BoardEx, a high-quality database that contains a lot of information on corporate boards and their board members, so I wrote a little script to scrape all the data about S&amp;amp;P500 board members.</description>
+    </item>
+    
+  </channel>
+</rss>
