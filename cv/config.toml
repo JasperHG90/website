@@ -170,7 +170,7 @@ disable404 = true
     [params.summary]
         enable = true
         icon = "fa-user"
-        title = "Career Profile"
+        title = "Profile"
         summary = "A data scientist with a versatile background and a strong interest in social and behavioural sciences, finance, artificial intelligence and social good. Experience with project management, data dashboards, consultancy, machine learning and academic writing."
 
     # Experiences section
@@ -181,28 +181,32 @@ disable404 = true
 
         [[params.jobs.list]]
         position = "Research intern"
-        dates = "June - August 2018"
+        dates = "Jun 2018 - Aug 2018"
         company = "Cortical.io, Vienna"
-        details = "Investigated the application of Cortical.io's core technologies to finance & investing. Focused on: <br><br> <ul><li>Gaining an in-depth understanding of Cortical.io's core technology and its application to large, textual datasets.</li><li>Develop methods to process, store and query news articles using Cortical.io's semantic folding technology</li><li>Use these methods to develop a prototype for visualizing and downloading historical and live data representing the nature and quantity of news relevant to user-selected stocks, commodities and portfolios.</li><li>Serving as liaision between the research team led by Prof. David Stolin and Cortical.</li></ul>"
+        details = "Investigated the application of Cortical.io's core technologies to finance & investing. Focused on: <br><ul><li>Gaining an in-depth understanding of Cortical.io's core technology and its application to large, textual datasets.</li><li>Develop methods to process, store and query news articles using Cortical.io's semantic folding technology</li><li>Use these methods to develop a prototype for visualizing and downloading historical and live data representing the nature and quantity of news relevant to user-selected stocks, commodities and portfolios.</li><li>Serving as liaision between the research team led by Prof. David Stolin and Cortical.</li></ul>"
         
         [[params.jobs.list]]
         position = "Data Analyst"
-        dates = "2015 - 2017"
+        dates = "Mar 2015 - Mar 2017"
         company = "Leiden University Centre for Innovation, The Hague"
         details = "Data analyst at the Leiden Center for Innovation, Online Learning Lab (OLL). The OLL facilitates the development of Massive Open Online Courses (MOOCs) at Leiden University. I was responsible for retrieving, storing and analysing MOOC data with the aim of improving courses and providing feedback to content creators & academics. Co-published several academic articles with researchers and published open-source tools for analysing MOOC data."
 
         [[params.jobs.list]]
-        position = "UI Developer"
-        dates = "2012 - 2014"
-        company = "Amazon, London"
-        details = "**Describe your role here** lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem."
+        position = "Assistant Strategic Analyst (Internship Program)"
+        dates = "Sep 2014 - Feb 2015"
+        company = "The Hague Centre for Strategic Studies, The Hague"
+        details = "The HCSS helps governments, non-governmental organisations and the private sector to anticipate the challenges of the future with practical policy solutions and advice. While at the HCSS, I worked on several projects in areas of Big Data, security studies, and international development. Further set up an event-monitoring server that scraped and processed roughly 20.000-50.000 news articles each day, and created a package in R to analyze assertive behaviour among 'great powers' such as Russia, the United States and China."
 
     # Projects section
     [params.projects]
         enable = true
         icon = "fa-archive"
         title = "Projects"
-        intro = "**You can list your side projects or open source libraries in this section.** Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et ligula in nunc bibendum fringilla a eu lectus"
+
+        [[params.projects.list]]
+        title = "FinTxtClient"
+        url = "https://github.com/FinTxt/FinTxtClient-Py"
+        tagline = "Python and [R](https://github.com/FinTxt/FinTxtClient-R) modules that allows the user to interact with the [FinTxt.io API](https://api.fintxt.io/rest/__swagger__/)"
 
         [[params.projects.list]]
         title = "qualtRics"
@@ -213,11 +217,6 @@ disable404 = true
         title = "sfutils"
         url = "https://jasperhg90.github.io/sfutils/"
         tagline = "R package to work with [semantic fingerprints](http://www.cortical.io/science-semantic-folding.html) developed by Cortical.io"
-        
-        [[params.projects.list]]
-        title = "FinTxtClient"
-        url = "https://github.com/FinTxt/FinTxtClient-Py"
-        tagline = "Python and [R](https://github.com/FinTxt/FinTxtClient-R) modules that allows the user to interact with the [FinTxt.io API](https://api.fintxt.io/rest/__swagger__/)"
         
     # Publications section
     [params.publications]
@@ -294,6 +293,9 @@ disable404 = true
         
         [[params.skills.other]]
         skill = "Git"
+        
+        [[params.skills.other]]
+        skill = "Spark"
         
     # Footer section
 
