@@ -1,6 +1,6 @@
 # Page settings
 
-baseurl = "https://www.jasperginn.nl/"
+baseurl = "https://blog.jasperginn.nl/"
 languageCode = "en-us"
 title = "Jasper Ginn CV"
 theme = "hugo-orbit-theme"
@@ -32,7 +32,7 @@ disable404 = true
     [params.profile]
         name = "Jasper Ginn"
         tagline = "Data Scientist / Student"
-        avatar = "profile.png"
+        avatar = "https://media.licdn.com/dms/image/C5603AQHppzdTh0lceA/profile-displayphoto-shrink_200_200/0?e=1539820800&v=beta&t=IZF4-7yaWAbCq_j0swkL8al8FprW4J-Bw-9Odm4vcNg"
 
     # Contact section
     [params.contact]
@@ -87,6 +87,12 @@ disable404 = true
     [params.development]
         enable = true
         title = "development"
+        
+        [[params.development.list]]
+        degree = "Deep Learning Specialization"
+        college = "Coursera (deeplearning.ai)"
+        dates = "August 2018 - Present"
+        certificate = "https://www.coursera.org/specializations/deep-learning"
 
         [[params.development.list]]
         degree = "UT.5.05x: LAFF: Linear Algebra - Foundations to Frontiers"
@@ -177,13 +183,13 @@ disable404 = true
         position = "Research intern"
         dates = "June - August 2018"
         company = "Cortical.io, Vienna"
-        details = "Investigated the application of Cortical.io's core technologies to finance & investing. Focused on: <br><br> &bull; Gaining an in-depth understanding of Cortical.io's core technology and its application to very large, textual datasets. <br> &bull; Develop methods to process, store and query news articles using Cortical.io's semantic folding technology <br> &bull; Use these methods to develop a prototype for visualizing and downloading historical and live data representing the nature and quantity of news relevant to user-selected stocks, commodities and portfolios. <br> &bull; Serving as liaision between the research team led by Prof. David Stolin and Cortical."
+        details = "Investigated the application of Cortical.io's core technologies to finance & investing. Focused on: <br><br> <ul><li>Gaining an in-depth understanding of Cortical.io's core technology and its application to large, textual datasets.</li><li>Develop methods to process, store and query news articles using Cortical.io's semantic folding technology</li><li>Use these methods to develop a prototype for visualizing and downloading historical and live data representing the nature and quantity of news relevant to user-selected stocks, commodities and portfolios.</li><li>Serving as liaision between the research team led by Prof. David Stolin and Cortical.</li></ul>"
         
         [[params.jobs.list]]
         position = "Data Analyst"
         dates = "2015 - 2017"
         company = "Leiden University Centre for Innovation, The Hague"
-        details = "Data analyst at the Leiden Center for Innovation, Online Learning Lab (OLL). The OLL facilitates the development of Massive Open Online Courses (MOOCs) at Leiden University. I was responsible for retrieving, storing and analysing MOOC data with the aim of improving courses and providing feedback to content creators & academics. Co-published several academic articles with researchers."
+        details = "Data analyst at the Leiden Center for Innovation, Online Learning Lab (OLL). The OLL facilitates the development of Massive Open Online Courses (MOOCs) at Leiden University. I was responsible for retrieving, storing and analysing MOOC data with the aim of improving courses and providing feedback to content creators & academics. Co-published several academic articles with researchers and published open-source tools for analysing MOOC data."
 
         [[params.jobs.list]]
         position = "UI Developer"
