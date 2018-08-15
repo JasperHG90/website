@@ -3,6 +3,7 @@ services:
   ## Splash page (hugo)
   splash:
     image: jhginn/rhugo:latest
+    command: ["R", "-e", "setwd('/root/blog'); blogdown::serve_site(host = '0.0.0.0', port = 8000)"]
     volumes:
      - ./splash:/root/blog
     restart: always
