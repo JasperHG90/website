@@ -38,7 +38,8 @@ services:
      - "80:80"
     volumes:
      - ./nginx.conf:/etc/nginx/nginx.conf:ro
-     ## UNCOMMENT THESE IF YOU SET UP SSL
+     ## UNCOMMENT THESE IF YOU SET UP SSL. COMMENT / DELETE LINE 40
+     #- ./nginx-ssl.conf:/etc/nginx/nginx.conf:ro
      #- /docker/letsencrypt-docker-nginx/src/production/dh-param/dhparam.pem:/etc/ssl/certs/dhparam-2048.pem
      #- /docker-volumes/etc/letsencrypt/live/jasperginn.nl/fullchain.pem:/etc/letsencrypt/live/jasperginn.nl/fullchain.pem
      #- /docker-volumes/etc/letsencrypt/live/jasperginn.nl/privkey.pem:/etc/letsencrypt/live/jasperginn.nl/privkey.pem
