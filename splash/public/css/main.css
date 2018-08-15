@@ -96,6 +96,10 @@
 
 /* Icon */
 
+  .icon-custom {
+    padding-top: 2px;
+  }
+
 	.icon {
 		text-decoration: none;
 		position: relative;

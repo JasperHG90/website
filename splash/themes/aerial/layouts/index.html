@@ -11,7 +11,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="css/main.css" />
-		<link href="https://file.myfontastic.com/bKiwHvJnTupaFQgJDvhwfU/icons.css" rel="stylesheet">
+		<link href="https://file.myfontastic.com/XYkQUZUQ5ALNsSA9yooSfb/icons.css" rel="stylesheet">
 		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie8.css" /><![endif]-->
 		<!--[if lte IE 9]><link rel="stylesheet" href="css/ie9.css" /><![endif]-->
     {{ with .Site.Params.favicon }}
@@ -32,7 +32,9 @@
 							<ul>
 								{{ range .Site.Params.social }}
   								{{ if eq .icon "docker" }}
-  								  <li><a href="{{ .link | safeURL }}" target="_blank" class="icon-docker"><span class="label">docker</span></a></li>
+  								  <li><a href="{{ .link | safeURL }}" target="_blank" class="icon icon-docker"><span class="label">docker</span></a></li>
+  								{{ else if eq .icon "file" }}
+  								  <li><a href="{{ .link | safeURL }}" target="_blank" class="icon icon-cv"><span class="label">docker</span></a></li>
   								{{ else }}
   								  <li><a href="{{ .link | safeURL }}" target="_blank" class="icon fa-{{ .icon }}"><span class="label">{{ .medium }}</span></a></li>
   								{{ end }}

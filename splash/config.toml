@@ -2,6 +2,7 @@ languageCode = "en-us"
 title = "Aerial"
 baseurl = "https://www.jasperginn.nl/"
 theme = "aerial"
+ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
 [params]
   name = "Jasper Ginn"
@@ -9,30 +10,15 @@ theme = "aerial"
   copyright = "Jasper Ginn"
   favicon = "favicon.ico"
 
-#[[params.social]]
-#  medium = "blog"
-#  icon = "wordpress"
-#  link = "https://www.jasperginn.nl/blog"
+[[params.social]]
+  medium = "blog"
+  icon = "wordpress"
+  link = "https://blog.jasperginn.nl"
   
 [[params.social]]
   medium = "cv"
   icon = "file"
-  link = "https://www.jasperginn.nl/cv"
-
-[[params.social]]
-  medium = "Email"
-  icon = "envelope-o"
-  link = "mailto:jasperginn@gmail.com"
-
-[[params.social]]
-  medium = "linkedin"
-  icon = "linkedin"
-  link = "https://nl.linkedin.com/in/jasperginn"
-  
-[[params.social]]
-  medium = "Twitter"
-  icon = "twitter"
-  link = "https://twitter.com/jhginn?lang=en"
+  link = "https://cv.jasperginn.nl"
   
 [[params.social]]
   medium = "Github"
@@ -43,3 +29,18 @@ theme = "aerial"
   medium = "docker"
   icon = "docker"
   link = "https://hub.docker.com/u/jhginn/"
+
+[[params.social]]
+  medium = "linkedin"
+  icon = "linkedin"
+  link = "https://nl.linkedin.com/in/jasperginn"
+
+[[params.social]]
+  medium = "Email"
+  icon = "envelope-o"
+  link = "mailto:jasperginn@gmail.com"
+
+[[params.social]]
+  medium = "Twitter"
+  icon = "twitter"
+  link = "https://twitter.com/jhginn?lang=en"
