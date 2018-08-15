@@ -19,72 +19,72 @@ Whereas setting up and using an apache cluster was once an arcane process unsuit
 
 The first thing you should do is [sign up](https://cloud.google.com/free-trial/) for an account. Then, create a new project.
 
-<img src="img/blog/sparklyr-and-rstudio/1.png">
+<https://blog.jasperginn.nl/img src="https://blog.jasperginn.nl/img/blog/sparklyr-and-rstudio/1.png">
 
 Give your project a fancy name.
 
 <div>
-  <img src="img/blog/sparklyr-and-rstudio/2.png">
+  <https://blog.jasperginn.nl/img src="https://blog.jasperginn.nl/img/blog/sparklyr-and-rstudio/2.png">
 </div>
 
 Go to the 'API' section in the console.
 
 <div>
-  <img src="img/blog/sparklyr-and-rstudio/3.png">
+  <https://blog.jasperginn.nl/img src="https://blog.jasperginn.nl/img/blog/sparklyr-and-rstudio/3.png">
 </div>
 
 Enable the APIs with the red rectangle around them. If they are not in the list, use the ‘enable api’ button (marked in blue) to search for and activate them.
 
 <div>
-  <img src="img/blog/sparklyr-and-rstudio/4.png">
+  <https://blog.jasperginn.nl/img src="https://blog.jasperginn.nl/img/blog/sparklyr-and-rstudio/4.png">
 </div>
 
 Go to the ‘networking’ pane under the settings menu.
 
 <div>
-  <img src="img/blog/sparklyr-and-rstudio/5.png">
+  <https://blog.jasperginn.nl/img src="https://blog.jasperginn.nl/img/blog/sparklyr-and-rstudio/5.png">
 </div>
 
 Click on ‘firewall rules’ and then click on ‘add firewall rule’. We need to open up port 8787 (which rstudio server uses) in order to access rstudio from a browser.
 
 <div>
-  <img src="img/blog/sparklyr-and-rstudio/6.png">
+  <https://blog.jasperginn.nl/img src="https://blog.jasperginn.nl/img/blog/sparklyr-and-rstudio/6.png">
 </div>
 
 Create the rule as shown in the picture and click ‘create’.
 
 <div>
-  <img src="img/blog/sparklyr-and-rstudio/7.png">
+  <https://blog.jasperginn.nl/img src="https://blog.jasperginn.nl/img/blog/sparklyr-and-rstudio/7.png">
 </div>
 
 Go back to the menu, scroll all the way down, and select ‘Dataproc’
 
 <div>
-  <img src="img/blog/sparklyr-and-rstudio/8.png">
+  <https://blog.jasperginn.nl/img src="https://blog.jasperginn.nl/img/blog/sparklyr-and-rstudio/8.png">
 </div>
 
 Click on ‘create cluster’ and customize settings to your taste. *NB. If you're on a test plan you cannot exceed 8 cores.*
 
 <div>
-  <img src="img/blog/sparklyr-and-rstudio/9.png">
+  <https://blog.jasperginn.nl/img src="https://blog.jasperginn.nl/img/blog/sparklyr-and-rstudio/9.png">
 </div>
 
 Install the [Cloud SDK](https://cloud.google.com/sdk/) for your OS and follow the instructions to set it up properly.
 
 <div>
-  <img src="img/blog/sparklyr-and-rstudio/10.png">
+  <https://blog.jasperginn.nl/img src="https://blog.jasperginn.nl/img/blog/sparklyr-and-rstudio/10.png">
 </div>
 
 Go back to the developers console and visit the ‘compute engine’ section.
 
 <div>
-  <img src="img/blog/sparklyr-and-rstudio/11.png">
+  <https://blog.jasperginn.nl/img src="https://blog.jasperginn.nl/img/blog/sparklyr-and-rstudio/11.png">
 </div>
 
 Click on the arrow next to the master node ‘ssh’ option and select ‘view gcloud command’.
 
 <div>
-  <img src="img/blog/sparklyr-and-rstudio/12.png">
+  <https://blog.jasperginn.nl/img src="https://blog.jasperginn.nl/img/blog/sparklyr-and-rstudio/12.png">
 </div>
 
 Copy-paste the command in a terminal, hit enter, and follow the instructions. (essentially, hit enter twice to make a new ssh key for your computer to login securely via ssh).
@@ -92,7 +92,7 @@ Copy-paste the command in a terminal, hit enter, and follow the instructions. (e
 Congratulations, you are now logged in.
 
 <div>
-  <img src="img/blog/sparklyr-and-rstudio/13.png">
+  <https://blog.jasperginn.nl/img src="https://blog.jasperginn.nl/img/blog/sparklyr-and-rstudio/13.png">
 </div>
 
 To access rstudio server, we will need a user/password combination. However, the current user ‘Jasper’, does not login using a password, but via ssh. The easiest thing to do is to add a new user. Execute
@@ -106,13 +106,13 @@ and fill out a new password for the user. You can simply press enter when prompt
 Next, go to the [rstudio website](https://dailies.rstudio.com/rstudioserver/ubuntu/amd64/) and copy the link to the latest build.
 
 <div>
-  <img src="img/blog/sparklyr-and-rstudio/14.png">
+  <https://blog.jasperginn.nl/img src="https://blog.jasperginn.nl/img/blog/sparklyr-and-rstudio/14.png">
 </div>
 
 Go back to the terminal and execute ‘wget `rstudio-server-link`’, as in the picture below.
 
 <div>
-  <img src="img/blog/sparklyr-and-rstudio/15.png">
+  <https://blog.jasperginn.nl/img src="https://blog.jasperginn.nl/img/blog/sparklyr-and-rstudio/15.png">
 </div>
 
 In the terminal, execute
@@ -124,13 +124,13 @@ sudo apt-get install gdebi-core
 Execute ‘ls -l’, and copy the name of your studio server distribution. Then execute 'sudo gdebi `your-rstudio-distribution`' in the terminal. When prompted if you want to install the package, type ‘y’ and hit enter.
 
 <div>
-  <img src="img/blog/sparklyr-and-rstudio/16.png">
+  <https://blog.jasperginn.nl/img src="https://blog.jasperginn.nl/img/blog/sparklyr-and-rstudio/16.png">
 </div>
 
 If all goes well you should see the following:
 
 <div>
-  <img src="img/blog/sparklyr-and-rstudio/17.png">
+  <https://blog.jasperginn.nl/img src="https://blog.jasperginn.nl/img/blog/sparklyr-and-rstudio/17.png">
 </div>
 
 Let’s install some dependencies for the R packages we’ll be installing later. Copy-paste the following into the terminal and hit enter
@@ -142,13 +142,13 @@ sudo apt-get install -y libcurl4-openssl-dev libxml2-dev libssl-dev
 Go back to the google developers console, and copy the public IP of your master node:
 
 <div>
-  <img src="img/blog/sparklyr-and-rstudio/18.png">
+  <https://blog.jasperginn.nl/img src="https://blog.jasperginn.nl/img/blog/sparklyr-and-rstudio/18.png">
 </div>
 
 Open up a new tab in your web browser and visit 'http://`your-public-ip`:8787'. You should see the following page:
 
 <div>
-  <img src="img/blog/sparklyr-and-rstudio/19.png">
+  <https://blog.jasperginn.nl/img src="https://blog.jasperginn.nl/img/blog/sparklyr-and-rstudio/19.png">
 </div>
 
 Sign in using the credentials you created for user 'rstudio'. Congrats! You now have a fully functioning stack rstudio plus spark cluster running. Let’s have some fun with it.
@@ -328,7 +328,7 @@ dplot
 As we can see, the data fluctuates a lot between August 2014 and January 2015.
 
 <div>
-  <img src="img/blog/sparklyr-and-rstudio/20.png">
+  <https://blog.jasperginn.nl/img src="https://blog.jasperginn.nl/img/blog/sparklyr-and-rstudio/20.png">
 </div>
 
 It seems that the period between February 1st, 2015 and June 1st, 2016 is the most reliable in terms of data availability. Let's filter for those dates.
@@ -370,7 +370,7 @@ avg.goldstein +
 On most days, the average goldstein score hovers between 0 and 1. January 2nd seems especially negative.
 
 <div>
-  <img src="img/blog/sparklyr-and-rstudio/21.png">
+  <https://blog.jasperginn.nl/img src="https://blog.jasperginn.nl/img/blog/sparklyr-and-rstudio/21.png">
 </div>
 
 Let's look at events in four countries: the USA, China, Russia and Great Britain.
@@ -407,7 +407,7 @@ mentions
 Events that happen in the USA are reported on most. However, there is a significant drop in events reported after October 2015. At the same time, Russia, China and Great Britain seem to increase their share of all daily events. This could have a lot of causes, but given the sudden change I'd say that either the news sources on which the data set is based were changed, or someone tweaked the algorithm used to geolocate the events.
 
 <div>
-  <img src="img/blog/sparklyr-and-rstudio/22.png">
+  <https://blog.jasperginn.nl/img src="https://blog.jasperginn.nl/img/blog/sparklyr-and-rstudio/22.png">
 </div>
 
 Finally, we can plot a map of all violent events in Syria using the `ggmap` package
@@ -450,5 +450,5 @@ syr.events
 Here, we observe that most events have no *specific* location; they are simply located at the center of Syria. Other than that, we also observe that many events occur at hotbeds of violence such as Aleppo, Kobane and around Damascus.
 
 <div>
-  <img src="img/blog/sparklyr-and-rstudio/23.png">
+  <https://blog.jasperginn.nl/img src="https://blog.jasperginn.nl/img/blog/sparklyr-and-rstudio/23.png">
 </div>

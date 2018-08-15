@@ -27,12 +27,12 @@ To get an overview of the ReclaimNaija reports, I created two maps (using ArcGIS
 Let’s look at the geographical distribution of the reports: In both elections, citizens submitted reports from all Nigerian states. This may seem like a minor observation, but it does mean that even in the most conflict-ridden states of Nigeria (think of the North-Eastern region that has been under attack from Boko Haram for years now), citizens know about the website, observe the elections, and have access to the relevant technology to submit a report. Thus, crowd sourced reports could become a useful addition to traditional election observers, who cannot be present in all areas of a country.
 
 <div>
-  <img src="https://www.jasperginn.nl/assets/images/blog/crowdsourced_elections/map_totrep2011.png">
+  <img src="https://blog.jasperginn.nl/assets/img/blog/crowdsourced_elections/map_totrep2011.png">
   <figcaption class="caption">Map of total number of Reports in the Nigerian 2011 elections</figcaption>
 </div>
 
 <div>
-  <img src="https://www.jasperginn.nl/assets/images/blog/crowdsourced_elections/map_totrep2015.png">
+  <img src="https://blog.jasperginn.nl/assets/img/blog/crowdsourced_elections/map_totrep2015.png">
   <figcaption class="caption">Map of total number of reports in the Nigerian 2015 elections</figcaption>
 </div>
 

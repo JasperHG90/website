@@ -69,7 +69,7 @@ ggplot(locsum, aes(x=Datestamp, y=count)) +
 In the image below, you see the number of logged locations (y-axis) for each given day (x-axis). On average, my phone logs 556 locations per day. The exception here being April 6th, where I may have switched off my mobile data service.
 
 <div>
-	<img src="https://www.jasperginn.nl/assets/images/blog/phone_location_history/Counts.png">
+	<img src="https://blog.jasperginn.nl/img/blog/phone_location_history/Counts.png">
 </div>
 
 We're going to use ggplot2 and ggmaps (part of the ggplot2 package) to plot our data. First, we fetch a static google map via the ggmap package. Then, we download a <a href="http://en.wikipedia.org/wiki/Shapefile">shapefile</a> with administrative regions, and transform the coordinate system to <a href="http://en.wikipedia.org/wiki/World_Geodetic_System">WGS84</a> such that we can put the layer on top of the google map. In order for ggmap to be able to 'understand' the geolocations, we have to use a function called 'fortify'. After that, we're all ready to go!
@@ -98,7 +98,7 @@ scale_colour_manual(values=c("blue","red"))
 The image below basically plots the latitude against the longitude values, and adds the google map, shapefile with administrative regions (blue) and my geolocations (red). I mostly travel by train, so you can actually make out the train tracks on this image.
 
 <div>
-	<img src="https://www.jasperginn.nl/assets/images/blog/phone_location_history/WholeNed.png">
+	<img src="https://blog.jasperginn.nl/img/blog/phone_location_history/WholeNed.png">
 </div>
 
 What if we want to take a closer look at, say, locations in a specific municipality? Because ggmap works well with Google maps, you can basically specify any location name the same way you would on Google maps. In the example below, we're zooming in and plotting locations in Amsterdam only. Unfortunately, we cannot easily download shapefiles for administrative regions on the municipality level through R. However, the package <a href="http://cran.r-project.org/web/packages/rgdal/index.html">rgdal</a> allows us to import shapefiles downloaded from the internet and luckily, there are <a href="http://guides.library.upenn.edu/content.php?pid=324392&sid=2655132">many places</a> where we can download such shapefiles, and a quick Google search would give you even more.
@@ -126,7 +126,7 @@ amsMap + geom_point(data = data, aes(x = longitude, y = latitude),
 {% endhighlight %}
 
 <div>
-	<img src="https://www.jasperginn.nl/assets/images/blog/phone_location_history/ggmapAms.png">
+	<img src="https://blog.jasperginn.nl/img/blog/phone_location_history/ggmapAms.png">
 </div>
 
 This is one of the <a href="http://bcb.dfci.harvard.edu/~aedin/courses/R/CDC/maps.html">many ways</a> we can plot geospatial data in R. Although you could go even further and analyze the places you visit most often, it's mainly just a fun exercise. If you would like more information about plotting geospatial data in R, I would recommend going through <a href="http://stat405.had.co.nz/ggmap.pdf">this</a> short paper co-authored by <a href="http://had.co.nz/">Hadley Wickam</a>, the developer of ggplot2 and dplyr.

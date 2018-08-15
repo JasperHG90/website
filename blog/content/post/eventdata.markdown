@@ -22,7 +22,7 @@ Both GDELT and EL:DIABLO create events out of news articles. Basically, the soft
 At this point, you may be wondering how the software identifies these actors, actions and attributes. Essentially, these are all versions of <a href="http://en.wikipedia.org/wiki/Statistical_classification">classification problems</a>. The software uses <a href="https://github.com/openeventdata/Dictionaries/blob/master/Phoenix.International.actors.txt">'dictionaries'</a> to identify e.g. actors. Most commonly, actions are coded into <em><a href="http://en.wikipedia.org/wiki/Conflict_and_Mediation_Event_Observations" target="_blank">'Conflict and Mediation Event Observations'</a></em> (CAMEO Codes). The 'tone' of an article (the intensity of conflict or cooperation) is measured by a metric called the <em><a href="http://web.pdx.edu/~kinsella/jgscale.html" target="_blank">'Goldstein Scale'</a></em>. The event extraction process is schematically outlined below.
 
 <div>
-  <img src="https://www.jasperginn.nl/assets/images/blog/distilling_event_data_articles/GDELT_Overview.png">
+  <img src="https://blog.jasperginn.nl/img/blog/distilling_event_data_articles/GDELT_Overview.png">
 </div>
 
 Let's illustrate this with an example from <a href="http://www.themoscowtimes.com/news/article/onslaught-of-ousted-spies-indicates-new-rules-of-global-espionage/511309.html">this Moscow Times article</a>. It contains the following sentence:  
@@ -36,19 +36,19 @@ This sentence would generate an event where the 'source actor' (Russia) expelled
 Using event data is not without pitfalls. Essentially, we are aggregating information originating from several news sources. These sources are affected by various biases, are unlikely to capture all events, and are likely to be 'noisy'. We can divide these issues into several categories, illustrated in the image below. We start out with four hypothetical 'real' events, some of which are reported on, some of which are not. The stories that are picked up by the media are subject to, for example, <em><a href="https://civic.mit.edu/blog/kanarinka/how-close-to-home-crisis-attention-and-geographic-bias" target="_blank">geography bias</a></em>, alluding to the fact that stories about the United States tend to be better reported on than stories about, say, rural China. There are 'article selection biases', arising from our ability to be much better at processing English-language texts than texts written in other languages, and issues of so-called '<a href="http://www.parusanalytics.com/eventdata/papers.dir/EWER.pdf" target="_blank">media fatigue</a>', where media tend to become less interested in e.g. conflicts over time and thus tend to report less on these conflicts (think Syria).
 
 <div>
-  <img src="https://www.jasperginn.nl/assets/images/blog/distilling_event_data_articles/GDELT_ISSUES.png">
+  <img src="https://blog.jasperginn.nl/img/blog/distilling_event_data_articles/GDELT_ISSUES.png">
 </div>
 
 Other issues are related to the fact that both the <a href="http://www.ibmbigdatahub.com/infographic/four-vs-big-data" target="_blank">volume (the size of data) and velocity (the speed at which data grows)</a> of the data grow at increasing rates because (a) we get better at capturing and storing events, and (b) the total amount of news articles increases over time. The image below shows the growth of observations in the GDELT database over the period 2000-2012. This throws up all sorts of road blocks when analysing temporal dynamics.
 
 <div>
-  <img src="https://www.jasperginn.nl/assets/images/blog/distilling_event_data_articles/figure1.png">
+  <img src="https://blog.jasperginn.nl/img/blog/distilling_event_data_articles/figure1.png">
 </div>
 
 Although we can somewhat mitigate such issues by normalising the data, as is done in the figure below for GDELT observations concerning violent events in Afghanistan between 2000 and 2012, it remains difficult to assess <em>what exactly is driving the dynamics of reported violent events</em>. Does the drop reported events post-2001 resemble a lack of interest in violent events in Afghanistan? Does it resemble the actual lack of violence? Or does it show us the growth of the number of articles over time? Ultimately, we can deal with such issues in various ways, but it does illustrate how 'noisy' event data can be.
 
 <div>
-  <img src="https://www.jasperginn.nl/assets/images/blog/distilling_event_data_articles/figure3.png">
+  <img src="https://blog.jasperginn.nl/img/blog/distilling_event_data_articles/figure3.png">
 </div>
 
 <strong>Comparing GDELT and EL:DIABLO</strong>

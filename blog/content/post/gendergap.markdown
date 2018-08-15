@@ -16,7 +16,7 @@ After reading several articles on remuneration across gender in the boards of S&
 I happened to have access to <a href="https://www.boardex.com/" target="_blank">BoardEx</a>, a high-quality database that contains a lot of information on corporate boards and their board members, so I wrote a little script to scrape all the data about S&amp;P500 board members. In the image below, each board member's age is plotted against the compensation that board member received. Here, compensation is logged because it is heavily skewed to the right (meaning that there are directors who get a much higher compensation compared to other directors in the dataset). The colouring signifies gender.
 
 <div>
-	<img src="img/blog/gender_gap_director_compensation/Gender_BoardEx.png">
+	<https://blog.jasperginn.nl/img src="https://blog.jasperginn.nl/img/blog/gender_gap_director_compensation/Gender_BoardEx.png">
 </div>
 
 At this point, you may be tempted to either conclude that male directors earn a lot more than their female counterparts, or you may be wondering why there appear to be two 'clusters' in the image above.
@@ -26,7 +26,7 @@ Corporate boards generally consist of executive directors and supervisory (or in
 It won't surprise you to hear that executive directors generally earn a lot more than the independent directors. The image below shows this divide in terms of compensation.
 
 <div>
-	<img src="img/blog/gender_gap_director_compensation/Directorship_BoardEx.png">
+	<https://blog.jasperginn.nl/img src="https://blog.jasperginn.nl/img/blog/gender_gap_director_compensation/Directorship_BoardEx.png">
 </div>
 
 So, what can we say about the difference in compensation for male and female directors? Well, they seem to lie very close to one another. The median compensation for female independent directors is 180.000 EUR versus 190.000 EUR for male independent directors. Conversely, the median compensation for female executive directors is 9.3 million EUR, while the median compensation for male executive directors is 'only' 8.5 million EUR. Overall, this looks quite equal.

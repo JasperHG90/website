@@ -14,7 +14,7 @@ For me, one of the most interesting areas of data analytics is in processing tex
 In the course of testing the results, I applied [hierarchical clustering](https://en.wikipedia.org/wiki/Hierarchical_clustering) on several samples of about 100 observations. The figure below shows the result of one of these clusters. The top-ten keywords are shown above each cluster together with their count (between parentheses).
 
 <div>
-  <img src="img/blog/semantic_fingerprinting/clusterFP.png" style="max-width:100%;">
+  <https://blog.jasperginn.nl/img src="https://blog.jasperginn.nl/img/blog/semantic_fingerprinting/clusterFP.png" style="max-width:100%;">
 </div>
 
 The interesting thing is how much sense these clusters make, even though a lot of these descriptions vary a lot in length and, more crucially, by the words they use. Using techniques such as semantic fingerprinting, we can go past simple text analyses and move on to some meaningful level of 'meaning'.

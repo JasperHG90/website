@@ -22,14 +22,14 @@ Why has public NATO support suddenly skyrocketed in Finland in the beginning of 
 From Finland's strategic position during the two conflicts, incentives of political parties to push for NATO agenda, as well as media agenda-setting, there is suggestive evidence that Finnish media has engaged in more pro-NATO framing during the Russo-Georgian war (see figure 1) than during the Ukraine crisis.
 
 <div>
-  <img src="https://www.jasperginn.nl/assets/images/blog/return_of_bear/Persistence_2008-1.png">
+  <img src="https://blog.jasperginn.nl/img/blog/return_of_bear/Persistence_2008-1.png">
   <figcaption class="caption">Figure 1: Types of arguments used by the Finnish media during the the Russo-Georgian war of 2008</figcaption>
 </div>
 
 Evidence conspicuously indicates that Finnish media has reported about the 'Russian threat' more frequently and intensely during the Ukraine crisis than during the Russo-Georgian war, but the reasons and incentives to do so remain unclear (see figure 2). There was no evidence that parties and elites had caused this change in reporting. Instead, the slightly different characters of the conflicts could have contributed to the different framing of the Ukraine crisis in Finland.
 
 <div>
-  <img src="https://www.jasperginn.nl/assets/images/blog/return_of_bear/Persistence_2014-1.png">
+  <img src="https://blog.jasperginn.nl/img/blog/return_of_bear/Persistence_2014-1.png">
   <figcaption class="caption">Figure 2: Types of arguments used by the Finnish media during the the Russo-Ukrainian war of 2014</figcaption>
 </div>
 

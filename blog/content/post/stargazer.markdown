@@ -143,7 +143,7 @@ qplot(CPI_score,Conf_Range_Difference,data=CPI)
 ```
 
 <div>
-	<img src="img/blog/regression_tables_r_stargazer/scatter_1.png">
+	<https://blog.jasperginn.nl/img src="https://blog.jasperginn.nl/img/blog/regression_tables_r_stargazer/scatter_1.png">
 </div>
 
 It looks like the data shows a curve where the confidence range is lowest at high and low scores, but becomes larger in the mid-level scores. Thus, the CPI scores of mid-range countries have larger error rates. This seems in line with the above theory that corruption is most difficult to observe when it's present, but not widespread. In order to deal with this non-linear relationship, we simply plot a polynomial regression smoother:
@@ -155,7 +155,7 @@ plot(qq + geom_smooth(method="lm",formula=y~x + I(x^2)))
 {% endhighlight %}
 
 <div>
-	<img src="img/blog/regression_tables_r_stargazer/scatter_2.png">
+	<https://blog.jasperginn.nl/img src="https://blog.jasperginn.nl/img/blog/regression_tables_r_stargazer/scatter_2.png">
 </div>
 
 All right, we now model the relationship using simple linear regression. Because the relationship appears to be non-linear, we'll include the polynomial relationship in the second model. The extra settings we're defining allow us to to further customize the output. Find a full overview of the features <a href="http://cran.r-project.org/web/packages/stargazer/stargazer.pdf" target="_blank">here</a>.
