@@ -10,7 +10,7 @@ services:
     ports:
       - "8000:8000"
   ## Online resume (hugo)
-  cv: 
+  cv:
     image: jhginn/rhugo:latest
     command: ["R", "-e", "setwd('/root/blog'); blogdown::serve_site(host = '0.0.0.0', port = 8001)"]
     volumes:
@@ -21,7 +21,7 @@ services:
     ports:
      - "8001:8001"
   ## blog (hugo)
-  blog: 
+  blog:
     image: jhginn/rhugo:latest
     command: ["R", "-e", "setwd('/root/blog'); blogdown::serve_site(host = '0.0.0.0', port = 8002)"]
     volumes:
@@ -38,6 +38,14 @@ services:
      - "80:80"
     volumes:
      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+     ## UNCOMMENT THESE IF YOU SET UP SSL
+     #- /docker/letsencrypt-docker-nginx/src/production/dh-param/dhparam.pem:/etc/ssl/certs/dhparam-2048.pem
+     #- /docker-volumes/etc/letsencrypt/live/jasperginn.nl/fullchain.pem:/etc/letsencrypt/live/jasperginn.nl/fullchain.pem
+     #- /docker-volumes/etc/letsencrypt/live/jasperginn.nl/privkey.pem:/etc/letsencrypt/live/jasperginn.nl/privkey.pem
+     #- /docker-volumes/etc/letsencrypt/live/cv.jasperginn.nl/fullchain.pem:/etc/letsencrypt/live/cv.jasperginn.nl/fullchain.pem
+     #- /docker-volumes/etc/letsencrypt/live/cv.jasperginn.nl/privkey.pem:/etc/letsencrypt/live/cv.jasperginn.nl/privkey.pem
+     #- /docker-volumes/etc/letsencrypt/live/blog.jasperginn.nl/fullchain.pem:/etc/letsencrypt/live/blog.jasperginn.nl/fullchain.pem
+     #- /docker-volumes/etc/letsencrypt/live/blog.jasperginn.nl/privkey.pem:/etc/letsencrypt/live/blog.jasperginn.nl/privkey.pem
     restart: always
     depends_on:
      - splash
